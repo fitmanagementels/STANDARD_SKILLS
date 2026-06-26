@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sync Codex Skills"
+  short_description: "Sincronizar skills entre máquinas"
+  default_prompt: "Use $sync-codex-skills para configurar minhas skills do Codex em uma nova máquina."
