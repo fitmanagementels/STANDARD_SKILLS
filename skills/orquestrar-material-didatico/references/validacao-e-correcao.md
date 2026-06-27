@@ -27,6 +27,8 @@ Toda revisao deve terminar com uma decisao objetiva:
 
 Depois da decisao, indique a proxima acao e o arquivo persistente que deve ser atualizado.
 
+Nao consolide conteudo didatico novo em briefing final, arquitetura, roteiro, fontes, diretrizes ou produtos sem checkpoint de validacao/auditoria do usuario. A validacao pode ser curta, mas precisa existir quando a atualizacao muda a substancia do projeto.
+
 ## Checklist geral
 
 - O objetivo da aula esta claro?
@@ -202,3 +204,23 @@ Decisao:
 Arquivo a atualizar:
 [caminho no projeto persistente]
 ```
+
+## Checkpoint antes de consolidar
+
+Antes de atualizar arquivos com conteudo de outra IA, responda em formato curto:
+
+```text
+O que vou consolidar:
+[resumo em 3-6 bullets]
+
+Arquivo(s):
+[caminhos]
+
+Risco de desalinhamento:
+[baixo/medio/alto + motivo]
+
+Preciso da sua validacao:
+[aprovado / ajustar X / nao consolidar ainda]
+```
+
+Se o usuario aprovar, atualize os arquivos. Se corrigir, incorpore a correcao antes de atualizar. Se nao responder com validacao clara, mantenha como rascunho ou output externo, nao como versao consolidada.

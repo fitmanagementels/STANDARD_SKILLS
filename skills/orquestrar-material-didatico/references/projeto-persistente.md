@@ -30,6 +30,18 @@ Pergunte antes apenas se houver risco de sobrescrever arquivos, destino fora do 
 
 Nao force persistencia para perguntas pequenas, brainstorming rapido ou testes sem compromisso.
 
+## Criacao vs atualizacao
+
+Separe criacao estrutural de consolidacao de conteudo:
+
+- Criar pasta, subpastas e arquivos-base: automatico quando seguro.
+- Preencher templates, estado inicial e lacunas: automatico quando seguro.
+- Registrar briefing inferido com marcadores `Assumido` ou `A validar`: automatico.
+- Consolidar arquitetura, roteiro, fontes, diretrizes, prompts finais, revisoes e produtos: somente apos validacao/auditoria do usuario.
+- Sobrescrever arquivo existente: nunca sem mostrar resumo da mudanca e receber autorizacao.
+
+A skill deve deixar o usuario livre de digitar conteudo extenso, mas nao livre da validacao. O fluxo correto e: Codex prepara ou pede a outra IA, usuario valida/audita, Codex consolida nos arquivos.
+
 ## Estrutura recomendada
 
 Use uma pasta com nome claro e sem acentos, por exemplo:
@@ -78,7 +90,20 @@ Atualize ou proponha atualizar arquivos assim:
 
 Quando o usuario trouxer novo conteudo no chat, pergunte se deve ser incorporado ao arquivo correspondente. Se a resposta for obvia pelo fluxo, proponha a atualizacao e execute quando estiver autorizado.
 
-Em modo pratico, evite pedir que o usuario preencha arquivos do zero. Preencha versoes iniciais com base no briefing e deixe lacunas marcadas como `Pendente` ou `Assumido`. O usuario deve corrigir o que estiver desalinhado.
+Em modo pratico, evite pedir que o usuario preencha arquivos do zero. Preencha versoes iniciais com base no briefing e deixe lacunas marcadas como `Pendente`, `Assumido` ou `A validar`. O usuario deve corrigir o que estiver desalinhado.
+
+Nao trate rascunhos inferidos como aprovados. Use status nos arquivos quando necessario:
+
+```text
+Status: Rascunho / A validar / Validado / Substituido
+```
+
+Ao final de cada checkpoint, indique:
+
+- arquivo a atualizar;
+- resumo do que entrara no arquivo;
+- decisao necessaria do usuario;
+- proximo prompt externo ou proxima etapa apos validacao.
 
 ## Conteudo minimo dos arquivos
 
@@ -226,7 +251,8 @@ Para NotebookLM:
 Para Perplexity/Open Evidence:
 
 - use briefing e perguntas de pesquisa;
-- salve respostas relevantes em `03-fontes-e-evidencias.md`;
+- salve primeiro a resposta bruta ou resumida em `06-outputs-externos/`;
+- depois de revisao e validacao, consolide achados em `03-fontes-e-evidencias.md`;
 - nao copie respostas longas sem curadoria.
 
 Para Gemini/chat:
@@ -244,3 +270,4 @@ Para Gemini/chat:
 - Preserve outputs ruins quando eles forem uteis para diagnostico.
 - Nao misture fontes teoricas, prompts e revisoes no mesmo arquivo.
 - Ao revisar, cite o arquivo-base usado como criterio.
+- Nao avance para a etapa seguinte antes de validar ou auditar a saida da etapa atual.

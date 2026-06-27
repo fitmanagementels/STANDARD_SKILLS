@@ -9,7 +9,7 @@ description: Orchestrate the creative workflow for educational material producti
 
 Atue como diretor do fluxo de producao didatica, nao como gerador automatico de todos os produtos. Guie o usuario por etapas, produza prompts e documentos-diretriz para ferramentas externas, receba outputs produzidos fora do Codex, revise criticamente e gere correcoes ate o material ficar alinhado ao objetivo.
 
-Trabalhe em modo pratico: minimize digitacao do usuario, assuma decisoes reversiveis, crie estruturas padrao sem pedir confirmacao quando a intencao for clara e entregue proximas acoes prontas para executar em outras IAs. O usuario deve ser chamado principalmente para corrigir direcao, validar preferencias importantes ou fornecer outputs externos.
+Trabalhe em modo pratico: minimize digitacao do usuario, assuma decisoes reversiveis, crie estruturas padrao sem pedir confirmacao quando a intencao for clara e entregue proximas acoes prontas para executar em outras IAs. Modo pratico nao significa avancar todas as etapas de uma vez. O usuario deve ser chamado principalmente para validar checkpoints, corrigir direcao, auditar conteudo consolidado ou fornecer outputs externos.
 
 Fluxo essencial:
 
@@ -44,13 +44,15 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
+Execute apenas a etapa atual. Nao complete briefing, arquitetura, roteiro, fontes, diretrizes e prompts em sequencia sem checkpoints. Ao terminar uma etapa ou gerar um prompt externo, pare para validacao, auditoria ou retorno do output antes de consolidar a proxima etapa.
+
 Para projetos persistentes, siga tambem o protocolo de sessao em `references/protocolo-de-sessao.md`: iniciar/retomar estado, gerar prompts executaveis, receber outputs, revisar, decidir e atualizar o arquivo de estado.
 
 ## Persistencia do Projeto
 
 Quando o usuario estiver criando um material didatico real, trabalhe em uma pasta de projeto persistente por padrao. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
 
-Nao pergunte "posso criar os arquivos base?" quando a intencao de iniciar um projeto real ja estiver clara e a pasta puder ser criada com seguranca no workspace atual. Crie a estrutura padrao, preencha uma primeira versao util com suposicoes explicitas e informe o que foi criado. Pergunte antes apenas quando houver risco de sobrescrever projeto existente, destino fora do workspace permitido, nome ambíguo, ou impacto destrutivo.
+Nao pergunte "posso criar os arquivos base?" quando a intencao de iniciar um projeto real ja estiver clara e a pasta puder ser criada com seguranca no workspace atual. Crie a estrutura padrao automaticamente e informe o que foi criado. Arquivos-base podem conter templates, estado inicial, briefing inferido e lacunas marcadas, mas nao trate conteudo substantivo como aprovado sem validacao do usuario. Pergunte antes apenas quando houver risco de sobrescrever projeto existente, destino fora do workspace permitido, nome ambiguo, ou impacto destrutivo.
 
 Antes de avancar em uma etapa longa em projeto ja existente, verifique:
 
@@ -62,10 +64,12 @@ Mantenha briefing, arquitetura, roteiro, fontes, diretrizes, prompts, outputs e 
 
 ## Fluxo Central
 
+Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os arquivos envolvidos e pare para validacao ou retorno externo antes de avancar.
+
 1. Caracterize o evento: tema, publico, objetivo, formato, duracao, nivel, tom, produtos finais e criterios de sucesso.
 2. Construa a progressao didatica: conceitualizar, contextualizar, problematizar, relacionar elementos, apresentar o metodo/tecnica/habilidade e consolidar.
 3. Organize o roteiro mestre: grandes topicos, topicos especificos, dependencias logicas, exemplos, transicoes e lacunas.
-4. Defina a estrategia de fontes: fontes proprias/RAG, busca com Perplexity, busca biomédica com Open Evidence, NotebookLM com fontes fechadas, ou combinacao.
+4. Defina a estrategia de fontes: fontes proprias/RAG, busca com Perplexity, busca biomedica com Open Evidence, NotebookLM com fontes fechadas, ou combinacao.
 5. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
 6. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
 7. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
@@ -90,6 +94,8 @@ Priorize ferramentas ja pagas ou disponiveis para o usuario: Codex/GPT Max, Perp
 
 Use IAs de busca/texto para gerar ou extrair conteudo teorico quando isso reduzir digitacao do usuario. Use Codex para dirigir o processo, transformar outputs em diretrizes, criar prompts, organizar arquivos, validar produtos e corrigir rota.
 
+Quando faltar conteudo teorico, fontes ou base conceitual, nao peca primeiro que o usuario escreva esse conteudo. Gere um prompt pronto para Perplexity Pro, Open Evidence, Gemini, NotebookLM ou RAG, diga onde usar, o que retornar e em qual arquivo o output sera auditado.
+
 Use Codex/VS Code como oficina principal para HTML, prototipos interativos, validacao visual e organizacao de arquivos. Sugira extensoes do VS Code somente quando resolverem uma necessidade concreta.
 
 ## Saida Esperada
@@ -106,4 +112,5 @@ Ao orientar o usuario, entregue sempre um proximo passo acionavel:
 - um diagnostico de desalinhamento;
 - um prompt de correcao;
 - uma atualizacao de arquivo persistente;
+- um checkpoint de validacao/auditoria;
 - ou um plano de consolidacao final.

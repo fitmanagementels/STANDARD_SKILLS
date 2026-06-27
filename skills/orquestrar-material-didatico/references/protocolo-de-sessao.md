@@ -15,16 +15,31 @@ Evitar conversas soltas. Cada sessao deve:
 
 ## Modo pratico
 
-O usuario quer baixo atrito e pouca digitacao. Portanto:
+O usuario quer baixo atrito, pouca digitacao e participacao por validacao. Portanto:
 
 - avance com suposicoes explicitas quando a decisao for reversivel;
 - crie estruturas padrao sem pedir permissao quando a intencao for clara e a operacao for segura no workspace;
 - pergunte apenas o que muda a direcao do projeto;
 - entregue prompts prontos para copiar e colar;
 - use IAs de busca/texto para gerar conteudo teorico em vez de pedir que o usuario digite esse conteudo;
-- chame o usuario principalmente para corrigir direcao, validar gosto/objetivo ou trazer outputs externos.
+- chame o usuario principalmente para validar checkpoints, corrigir direcao, auditar conteudo consolidado ou trazer outputs externos.
 
-Nao use perguntas como forma de adiar trabalho operacional. Se o proximo passo padrao for claro, execute.
+Nao use perguntas como forma de adiar trabalho operacional. Se o proximo passo padrao for claro, execute a preparacao da etapa. Mas nao use automacao para pular validacao: execute uma etapa, pare, valide, depois siga.
+
+## Ciclo validado por etapa
+
+Use este ciclo em todo projeto real:
+
+1. Identificar a etapa atual.
+2. Criar ou atualizar a estrutura persistente minima, se necessario.
+3. Produzir apenas a saida da etapa atual: rascunho, prompt externo, diagnostico ou proposta de atualizacao.
+4. Indicar quais arquivos seriam criados ou atualizados.
+5. Pedir validacao/auditoria do usuario antes de consolidar conteudo substantivo.
+6. Aguardar aprovacao, correcao ou output externo.
+7. Depois da validacao, atualizar os arquivos correspondentes e `00-estado-atual.md`.
+8. So entao propor a proxima etapa.
+
+Nao execute todas as fases de planejamento em uma unica resposta. Se for necessario antecipar o caminho completo, apresente-o como mapa resumido, nao como conteudo consolidado.
 
 ## Inicio de projeto
 
@@ -33,8 +48,9 @@ Quando o usuario comecar um material novo:
 1. Crie pasta persistente se o trabalho for real e o destino for seguro.
 2. Defina um slug de pasta a partir do tema.
 3. Crie `00-estado-atual.md` e os arquivos-base padrao.
-4. Preencha a primeira versao dos arquivos com o briefing inferido e suposicoes explicitas.
-5. Termine com a proxima acao recomendada e um prompt externo pronto.
+4. Preencha templates, estado inicial, briefing inferido e lacunas marcadas como `Pendente`, `Assumido` ou `A validar`.
+5. Nao preencha arquitetura, roteiro, fontes, diretrizes e prompts como se estivessem concluidos no primeiro passe.
+6. Termine com o primeiro checkpoint: validacao do briefing ou prompt externo pronto para buscar/extrair conteudo.
 
 Pergunte antes de criar somente se:
 
@@ -108,6 +124,8 @@ Trazer de volta ao Codex:
 
 O prompt deve transferir trabalho para a ferramenta externa. Evite pedir que o usuario escreva manualmente conteudo teorico que Perplexity, Open Evidence, NotebookLM, Gemini ou RAG podem buscar, extrair ou sintetizar.
 
+Quando faltar conteudo teorico, fontes, definicoes, autores, evidencias, exemplos ou estrutura de base, gere primeiro um prompt externo. Nao solicite ao usuario "mande o conteudo" como primeira acao, exceto quando ele disser que ja tem uma fonte especifica e quer usa-la.
+
 Se o prompt for grande ou o produto complexo, divida em rodadas. Prefira tres prompts bons e verificaveis a um prompt enorme que a ferramenta pode ignorar.
 
 ## Recebimento de output externo
@@ -119,6 +137,7 @@ Quando o usuario trouxer output de outra ferramenta:
 3. Salve ou proponha salvar em `06-outputs-externos/`.
 4. Revise contra briefing, roteiro e diretrizes.
 5. Gere decisao objetiva.
+6. Proponha a atualizacao dos arquivos de trabalho e aguarde validacao antes de consolidar conteudo substantivo.
 
 Se o output estiver incompleto, peca o minimo necessario: prompt usado, fonte usada ou trecho do output.
 
@@ -186,3 +205,5 @@ Ao final de etapa relevante, atualize ou proponha atualizar `00-estado-atual.md`
 ```
 
 Regra simples: se uma decisao foi tomada, um prompt foi enviado, um output foi recebido ou uma revisao foi concluida, o estado deve mudar.
+
+Quando a mudanca for apenas procedural, atualize `00-estado-atual.md` diretamente. Quando a mudanca consolidar conteudo didatico, fonte, roteiro, diretriz ou produto, mostre a proposta de atualizacao e aguarde validacao/auditoria.

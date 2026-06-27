@@ -15,6 +15,10 @@ Ao criar prompts, seja diretivo:
 - diga o que trazer de volta ao Codex;
 - evite perguntas desnecessarias antes de entregar uma primeira rodada executavel.
 
+Se faltar conteudo teorico ou fonte, nao peca primeiro que o usuario escreva esse conteudo. Gere uma rodada de busca, RAG ou sintese para Perplexity Pro, Open Evidence, Gemini, NotebookLM ou ferramenta equivalente. A participacao principal do usuario deve ser executar o prompt externo, trazer o resultado e validar a consolidacao.
+
+Cada prompt deve representar uma rodada verificavel. Evite prompts que tentem pesquisar, criar roteiro, criar slides, criar ebook e revisar tudo de uma vez.
+
 ## Estrutura base de prompt externo
 
 Todo prompt para ferramenta externa deve vir acompanhado de um bloco operacional:
@@ -81,6 +85,8 @@ Faca uma busca profunda para mapear:
 
 Priorize fontes confiaveis e traga links/referencias. Separe fatos consolidados, hipoteses e recomendacoes praticas. Nao transforme isso em aula ainda; quero uma base de pesquisa.
 ```
+
+Quando o usuario quer baixa digitacao, use uma versao preenchida com o briefing inferido e peca confirmacao apenas dos pontos que mudariam a busca.
 
 ## Prompt para Open Evidence
 
