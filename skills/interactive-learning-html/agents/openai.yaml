@@ -1,0 +1,6 @@
+interface:
+  display_name: "Interactive Learning HTML"
+  short_description: "Design quizzes and didactic HTML activities"
+  default_prompt: "Use $interactive-learning-html to create an interactive educational HTML experience with useful feedback."
+policy:
+  allow_implicit_invocation: true

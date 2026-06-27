@@ -1,0 +1,6 @@
+interface:
+  display_name: "Google Sheets Dashboard"
+  short_description: "Build dashboards from spreadsheet data"
+  default_prompt: "Use $google-sheets-dashboard to design or implement an HTML dashboard backed by Google Sheets data."
+policy:
+  allow_implicit_invocation: true

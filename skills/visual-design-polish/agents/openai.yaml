@@ -1,0 +1,6 @@
+interface:
+  display_name: "Visual Design Polish"
+  short_description: "Improve HTML styling and visual quality"
+  default_prompt: "Use $visual-design-polish to make this HTML interface cleaner, more beautiful, and more professional."
+policy:
+  allow_implicit_invocation: true

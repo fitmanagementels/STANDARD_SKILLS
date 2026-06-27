@@ -1,0 +1,6 @@
+interface:
+  display_name: "HTML UI/UX Reviewer"
+  short_description: "Improve usability and flow in HTML tools"
+  default_prompt: "Use $html-ui-ux-reviewer to review this HTML interface and recommend focused UX improvements."
+policy:
+  allow_implicit_invocation: true

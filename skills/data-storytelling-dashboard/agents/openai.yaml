@@ -1,0 +1,6 @@
+interface:
+  display_name: "Data Storytelling Dashboard"
+  short_description: "Turn metrics into dashboard insights"
+  default_prompt: "Use $data-storytelling-dashboard to improve the analytical narrative and decision value of this dashboard."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+interface:
+  display_name: "HTML PWA + Apps Script"
+  short_description: "Build daily-use PWAs with Sheets backend"
+  default_prompt: "Use $html-pwa-appscript to design or build a lightweight PWA backed by Apps Script and Google Sheets."
+policy:
+  allow_implicit_invocation: true
