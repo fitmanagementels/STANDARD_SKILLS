@@ -1,11 +1,25 @@
 # Codex Skills
 
-Repositório padrão para sincronizar skills pessoais do Codex entre máquinas.
+Repositório padrão para sincronizar skills pessoais do Codex entre máquinas e consultar o acervo em um Catálogo interativo.
+
+## Catálogo interativo
+
+Abra [index.html](/home/elohimlima/Downloads/VSCODE|ANTIGRAVITY/STANDARD_CONTEXT_IA/index.html) no navegador para navegar pelo acervo como um app local.
+
+O catálogo inclui:
+
+- Busca por nome, função, aplicação e exemplo.
+- Filtros por categoria e tipo de skill.
+- Cards resumidos com funções principais.
+- Painel de detalhes com aplicação prática, resumo completo e prompt de invocação.
+- Fluxos recomendados para combinar skills em trabalhos reais.
+- Aba dedicada ao `CONTEXTO_DO_PROJETO.md`, apresentada como histórico organizado do projeto.
 
 ## Estrutura
 
 ```text
 .
+├── index.html
 ├── skills/
 │   └── sync-codex-skills/
 └── scripts/
@@ -21,6 +35,8 @@ https://github.com/obra/superpowers
 ```
 
 A origem exata e a licença estão registradas em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+O acervo também contém skills pessoais voltadas a produção HTML, Apps Script, dashboards, UI/UX, design visual, conteúdo didático interativo e gestão da própria base.
 
 ## Instalar em uma máquina
 

@@ -1,0 +1,1164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Base Universal de Skills</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111315;
+      --surface: #171a1e;
+      --surface-2: #1e2328;
+      --surface-3: #262c33;
+      --line: #343b44;
+      --text: #eef2f5;
+      --muted: #aeb7c2;
+      --soft: #7f8a96;
+      --teal: #4fd1c5;
+      --amber: #f4c76f;
+      --violet: #b8a1ff;
+      --rose: #f09aa8;
+      --green: #8bd48b;
+      --blue: #8ebcff;
+      --radius: 8px;
+      --shadow: 0 24px 60px rgba(0, 0, 0, .28);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(79, 209, 197, .08), transparent 26%),
+        linear-gradient(315deg, rgba(244, 199, 111, .06), transparent 26%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .app {
+      width: min(1480px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 42px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow {
+      color: var(--teal);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin: 0 0 8px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: .96;
+      letter-spacing: 0;
+      margin: 0;
+      max-width: 780px;
+    }
+
+    .intro {
+      color: var(--muted);
+      max-width: 760px;
+      line-height: 1.6;
+      margin: 14px 0 0;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .tab-button,
+    .chip,
+    .ghost-button {
+      min-height: 40px;
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 0 14px;
+      transition: border-color .18s ease, background .18s ease, color .18s ease, transform .18s ease;
+    }
+
+    .tab-button:hover,
+    .chip:hover,
+    .ghost-button:hover {
+      transform: translateY(-1px);
+      border-color: #56606c;
+      color: var(--text);
+    }
+
+    .tab-button.active,
+    .chip.active {
+      background: #26302f;
+      border-color: rgba(79, 209, 197, .55);
+      color: var(--text);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0 22px;
+    }
+
+    .stat {
+      min-height: 86px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(30, 35, 40, .82);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.7rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(23, 26, 30, .92);
+      box-shadow: var(--shadow);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto;
+      gap: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .search {
+      width: 100%;
+      min-height: 46px;
+      background: #101214;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      padding: 0 14px;
+      outline: none;
+    }
+
+    .search:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(79, 209, 197, .14);
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(360px, 440px);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .catalog-main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .category-strip,
+    .type-strip {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 12px;
+    }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      display: flex;
+      min-height: 260px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(38, 44, 51, .94), rgba(25, 29, 34, .96));
+      transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .skill-card:hover,
+    .skill-card.selected {
+      transform: translateY(-2px);
+      border-color: rgba(79, 209, 197, .58);
+      background: linear-gradient(180deg, rgba(43, 51, 58, .98), rgba(27, 32, 37, .98));
+    }
+
+    .skill-card h2,
+    .detail h2,
+    .context-card h2 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+
+    .skill-card p,
+    .detail p,
+    .context-card p {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .meta-line {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 12px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(16, 18, 20, .72);
+      padding: 0 10px;
+      font-size: .77rem;
+      white-space: nowrap;
+    }
+
+    .badge.production { border-color: rgba(79, 209, 197, .45); color: #b9f4ee; }
+    .badge.repertory { border-color: rgba(184, 161, 255, .45); color: #d8ccff; }
+    .badge.process { border-color: rgba(244, 199, 111, .45); color: #f8deb0; }
+    .badge.validation { border-color: rgba(240, 154, 168, .45); color: #ffd0d7; }
+
+    .function-list,
+    .detail-list {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .function-list li,
+    .detail-list li {
+      color: var(--muted);
+      line-height: 1.45;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .function-list li::before,
+    .detail-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .65em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      min-height: 40px;
+      border-radius: var(--radius);
+      padding: 0 12px;
+      color: #071011;
+      background: var(--teal);
+      font-weight: 760;
+    }
+
+    .secondary-button {
+      color: var(--text);
+      background: var(--surface-3);
+      border: 1px solid var(--line);
+    }
+
+    .detail {
+      position: sticky;
+      top: 14px;
+      padding: 18px;
+      max-height: calc(100vh - 28px);
+      overflow: auto;
+    }
+
+    .detail-section {
+      border-top: 1px solid var(--line);
+      margin-top: 16px;
+      padding-top: 16px;
+    }
+
+    .prompt-box,
+    .example-box {
+      border: 1px solid var(--line);
+      background: #101214;
+      color: var(--text);
+      border-radius: var(--radius);
+      padding: 12px;
+      line-height: 1.5;
+      margin-top: 10px;
+    }
+
+    .workflow-panel {
+      padding: 14px;
+    }
+
+    .workflow-panel h2,
+    .context-head h2 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .workflow-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .workflow-card {
+      text-align: left;
+      min-height: 128px;
+      padding: 14px;
+      border-radius: var(--radius);
+      background: #20262c;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .workflow-card strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .workflow-card span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .context-layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 360px) 1fr;
+      gap: 14px;
+    }
+
+    .context-head {
+      padding: 16px;
+      position: sticky;
+      top: 14px;
+      align-self: start;
+    }
+
+    .context-index {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .context-index button {
+      text-align: left;
+      min-height: 42px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: #101214;
+      padding: 0 12px;
+    }
+
+    .context-index button.active {
+      color: var(--text);
+      border-color: rgba(244, 199, 111, .55);
+      background: #2f2a20;
+    }
+
+    .context-timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .context-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(30, 35, 40, .92);
+    }
+
+    .context-card.active {
+      border-color: rgba(244, 199, 111, .58);
+      box-shadow: 0 0 0 3px rgba(244, 199, 111, .08);
+    }
+
+    .context-card code,
+    .detail code {
+      color: #d6f8f4;
+      background: #101214;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 2px 6px;
+    }
+
+    .empty {
+      padding: 30px;
+      color: var(--muted);
+      text-align: center;
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      background: rgba(30, 35, 40, .52);
+    }
+
+    @media (max-width: 1080px) {
+      .topbar,
+      .toolbar,
+      .content-grid,
+      .context-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .detail,
+      .context-head {
+        position: static;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        width: min(100% - 20px, 1480px);
+        padding-top: 18px;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Base universal de skills</p>
+        <h1>Um app para entender, escolher e combinar suas skills.</h1>
+        <p class="intro">Catálogo interativo das instruções acumuladas neste repositório. Use para descobrir quando acionar cada skill, como combinar fluxos e como manter o histórico do projeto visível.</p>
+      </div>
+      <nav class="top-actions" aria-label="Abas principais">
+        <button class="tab-button active" type="button" data-tab="catalog" id="catalogTab">Catálogo de skills</button>
+        <button class="tab-button" type="button" data-tab="context" id="contextTab">Contexto do projeto</button>
+      </nav>
+    </header>
+
+    <section class="stats" aria-label="Resumo do acervo">
+      <div class="stat"><strong id="totalSkills">0</strong><span>skills catalogadas</span></div>
+      <div class="stat"><strong id="totalCategories">0</strong><span>categorias de uso</span></div>
+      <div class="stat"><strong id="productionCount">0</strong><span>skills de produção</span></div>
+      <div class="stat"><strong id="processCount">0</strong><span>skills de processo e validação</span></div>
+    </section>
+
+    <main>
+      <section class="view active" id="catalogView" aria-label="Catálogo interativo de skills">
+        <div class="panel toolbar">
+          <input class="search" id="searchInput" type="search" placeholder="Buscar por nome, função, aplicação ou exemplo..." aria-label="Buscar skills">
+          <div class="filter-row">
+            <button class="ghost-button" type="button" id="resetFilters">Limpar filtros</button>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="catalog-main">
+            <section class="panel category-strip" id="categoryFilters" aria-label="Categorias"></section>
+            <section class="panel type-strip" id="typeFilters" aria-label="Tipos"></section>
+
+            <section class="workflow-panel panel" aria-label="Fluxos recomendados">
+              <h2>Fluxos recomendados</h2>
+              <div class="workflow-list" id="workflowList"></div>
+            </section>
+
+            <section class="skill-grid" id="skillGrid" aria-label="Lista de skills"></section>
+          </div>
+
+          <aside class="detail panel" id="skillDetail" aria-label="Detalhes da skill"></aside>
+        </div>
+      </section>
+
+      <section class="view" id="contextView" aria-label="Contexto histórico do projeto">
+        <div class="context-layout">
+          <aside class="context-head panel">
+            <h2>CONTEXTO_DO_PROJETO.md</h2>
+            <p>Esta aba apresenta o documento de contexto como um painel organizado: origem, estrutura, histórico de decisões, cuidados e próximos usos da base.</p>
+            <div class="context-index" id="contextIndex" aria-label="Seções do contexto"></div>
+          </aside>
+          <section class="context-timeline" id="contextTimeline"></section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const skills = [
+      {
+        name: "html-pwa-appscript",
+        category: "Produção HTML e Apps",
+        type: "Produção",
+        level: "Aplicação diária",
+        accent: "production",
+        summary: "Cria PWAs leves em HTML com Apps Script e Google Sheets para registros recorrentes, monitoramento e análises simples.",
+        functions: ["Arquitetura frontend, backend e planilha", "Contrato JSON para Apps Script", "Offline, cache e recuperação de erro"],
+        practical: "Use quando quiser criar um app de rotina para registrar eventos, acompanhar medidas, calcular tendências e salvar tudo em uma planilha.",
+        details: ["Foca no caminho de uso diário antes das configurações.", "Separa dados brutos de estatísticas derivadas.", "Recomenda validação no backend, LockService e feedback visível de sincronização."],
+        prompt: "Use $html-pwa-appscript para desenhar um PWA de registro diário com Apps Script e Google Sheets.",
+        related: ["google-sheets-dashboard", "data-storytelling-dashboard", "html-ui-ux-reviewer"]
+      },
+      {
+        name: "google-sheets-dashboard",
+        category: "Dados e Dashboards",
+        type: "Produção",
+        level: "Análise tabular",
+        accent: "production",
+        summary: "Transforma dados de Google Sheets ou CSV em dashboards com KPIs, filtros, gráficos, tabelas e tratamento de dados reais.",
+        functions: ["Contrato de dados da planilha", "Parsing, validação e métricas derivadas", "Componentes de dashboard e estados de erro"],
+        practical: "Use quando tiver uma planilha importante e quiser criar uma visão mais clara para acompanhamento, comparação e decisão.",
+        details: ["Espera células vazias, datas mistas e campos editados manualmente.", "Evita ligar gráficos diretamente aos dados crus.", "Inclui filtros, data de atualização, drilldown e exportação quando útil."],
+        prompt: "Use $google-sheets-dashboard para criar um dashboard HTML a partir desta planilha.",
+        related: ["data-storytelling-dashboard", "visual-design-polish", "html-pwa-appscript"]
+      },
+      {
+        name: "data-storytelling-dashboard",
+        category: "Dados e Dashboards",
+        type: "Repertório",
+        level: "Interpretação",
+        accent: "repertory",
+        summary: "Melhora dashboards para que eles contem uma história: estado atual, tendência, comparação, drivers e cautelas.",
+        functions: ["Hierarquia de métricas", "Escolha de visualizações", "Texto de insight e alertas de qualidade dos dados"],
+        practical: "Use quando o dashboard mostra números, mas ainda não ajuda a entender o que mudou, por que importa e qual decisão tomar.",
+        details: ["Começa pela pergunta que o dashboard deve responder.", "Diferencia métricas primárias, secundárias e diagnósticas.", "Evita causalidade inventada e percentuais sem denominador."],
+        prompt: "Use $data-storytelling-dashboard para transformar estes indicadores em uma leitura analítica útil.",
+        related: ["google-sheets-dashboard", "visual-design-polish", "html-ui-ux-reviewer"]
+      },
+      {
+        name: "html-ui-ux-reviewer",
+        category: "Design, UI e UX",
+        type: "Repertório",
+        level: "Usabilidade",
+        accent: "repertory",
+        summary: "Revisa interfaces HTML para melhorar fluxo, hierarquia, navegação, estados, formulários e ergonomia de uso diário.",
+        functions: ["Diagnóstico de risco UX", "Priorização de melhorias", "Checklist desktop e mobile"],
+        practical: "Use quando um HTML funciona, mas está confuso, exige cliques demais, não comunica o próximo passo ou falha em mobile.",
+        details: ["Mapeia a tarefa principal da tela.", "Revisa estados de carregamento, vazio, erro, sucesso e confirmação.", "Favorece ações comuns visíveis onde a decisão acontece."],
+        prompt: "Use $html-ui-ux-reviewer para revisar esta interface HTML e melhorar o fluxo principal.",
+        related: ["visual-design-polish", "interactive-learning-html", "html-pwa-appscript"]
+      },
+      {
+        name: "visual-design-polish",
+        category: "Design, UI e UX",
+        type: "Repertório",
+        level: "Acabamento visual",
+        accent: "repertory",
+        summary: "Eleva a qualidade visual de HTML e CSS com tipografia, espaçamento, contraste, paleta e ritmo de layout.",
+        functions: ["Direção visual", "Tokens de CSS", "Estados visuais consistentes"],
+        practical: "Use quando a tela está correta, mas parece genérica, pesada, desalinhada, monótona ou pouco profissional.",
+        details: ["Define humor visual antes de escolher cores.", "Usa cinzas, acentos e contraste com função clara.", "Evita decoração vazia, cards dentro de cards e texto que estoura."],
+        prompt: "Use $visual-design-polish para deixar este HTML mais bonito, limpo e profissional.",
+        related: ["html-ui-ux-reviewer", "data-storytelling-dashboard", "interactive-learning-html"]
+      },
+      {
+        name: "interactive-learning-html",
+        category: "Educação Interativa",
+        type: "Produção",
+        level: "Aprendizagem ativa",
+        accent: "production",
+        summary: "Cria conteúdos didáticos HTML com quizzes, flashcards, simulações, atividades guiadas e feedback útil.",
+        functions: ["Objetivos de aprendizagem", "Padrões de interação", "Feedback, progresso e acessibilidade"],
+        practical: "Use quando quiser transformar conteúdo explicativo em prática ativa, com respostas, tentativas e reflexão.",
+        details: ["Parte de um objetivo observável.", "Escolhe interação pelo tipo de aprendizagem, não por enfeite.", "Dá feedback explicativo e permite retry sem humilhar o aluno."],
+        prompt: "Use $interactive-learning-html para criar uma experiência didática HTML interativa sobre este tema.",
+        related: ["orquestrar-material-didatico", "html-ui-ux-reviewer", "visual-design-polish"]
+      },
+      {
+        name: "orquestrar-material-didatico",
+        category: "Educação Interativa",
+        type: "Processo",
+        level: "Direção didática",
+        accent: "process",
+        summary: "Orquestra a produção de aulas, slides, apostilas, ebooks mobile, materiais HTML e fluxos com ferramentas externas.",
+        functions: ["Briefing e arquitetura de aula", "Prompts para ferramentas externas", "Revisão e correção de outputs didáticos"],
+        practical: "Use quando o trabalho educacional envolve várias etapas, fontes, ferramentas e produtos finais que precisam de coerência.",
+        details: ["Identifica em qual etapa o material está.", "Cria roteiro mestre, diretrizes e prompts de ação.", "Recebe outputs externos e gera diagnóstico de desalinhamento."],
+        prompt: "Use $orquestrar-material-didatico para organizar a produção completa desta aula ou material didático.",
+        related: ["interactive-learning-html", "brainstorming", "requesting-code-review"]
+      },
+      {
+        name: "brainstorming",
+        category: "Engenharia e Processo",
+        type: "Processo",
+        level: "Descoberta",
+        accent: "process",
+        summary: "Converte ideias em desenhos e especificações antes de implementar, especialmente em trabalhos criativos ou de produto.",
+        functions: ["Exploração de contexto", "Perguntas de escopo", "Proposta de abordagens e desenho aprovado"],
+        practical: "Use antes de criar features, componentes, apps, conteúdos interativos ou qualquer mudança com decisões abertas.",
+        details: ["Impede implementação antes de um desenho aprovado.", "Ajuda a decompor projetos grandes.", "Transforma intenção difusa em especificação verificável."],
+        prompt: "Use $brainstorming para transformar esta ideia em um desenho de implementação.",
+        related: ["writing-plans", "html-ui-ux-reviewer", "interactive-learning-html"]
+      },
+      {
+        name: "writing-plans",
+        category: "Engenharia e Processo",
+        type: "Processo",
+        level: "Planejamento",
+        accent: "process",
+        summary: "Cria planos de implementação detalhados, testáveis e divididos em tarefas pequenas.",
+        functions: ["Mapeamento de arquivos", "Tarefas com passos verificáveis", "Handoff para execução"],
+        practical: "Use depois de aprovar uma especificação e antes de tocar em código em uma mudança multi-etapa.",
+        details: ["Exige caminhos exatos, comandos e critérios de sucesso.", "Evita placeholders e instruções vagas.", "Prepara execução com checkpoints."],
+        prompt: "Use $writing-plans para criar um plano de implementação a partir desta especificação.",
+        related: ["executing-plans", "subagent-driven-development", "test-driven-development"]
+      },
+      {
+        name: "test-driven-development",
+        category: "Engenharia e Processo",
+        type: "Validação",
+        level: "Confiança",
+        accent: "validation",
+        summary: "Exige escrever teste primeiro, ver falhar, implementar o mínimo e ver passar.",
+        functions: ["Ciclo vermelho, verde e refatoração", "Proteção contra regressões", "Testes como contrato de comportamento"],
+        practical: "Use ao implementar features, corrigir bugs ou alterar comportamento.",
+        details: ["O teste precisa falhar pelo motivo correto.", "Código de produção só entra depois do vermelho.", "A refatoração acontece apenas com testes verdes."],
+        prompt: "Use $test-driven-development para implementar esta mudança com teste primeiro.",
+        related: ["verification-before-completion", "systematic-debugging", "writing-plans"]
+      },
+      {
+        name: "verification-before-completion",
+        category: "Engenharia e Processo",
+        type: "Validação",
+        level: "Evidência",
+        accent: "validation",
+        summary: "Impede concluir, commitar ou afirmar sucesso sem verificação fresca e evidência real.",
+        functions: ["Identificar prova adequada", "Rodar comando completo", "Ler saída antes de afirmar conclusão"],
+        practical: "Use antes de dizer que algo está pronto, passando, corrigido ou seguro para publicar.",
+        details: ["Troca confiança por evidência.", "Ajuda a evitar falsas conclusões.", "Exige saída verificável de testes, builds ou checks."],
+        prompt: "Use $verification-before-completion para verificar esta entrega antes de concluir.",
+        related: ["test-driven-development", "requesting-code-review", "finishing-a-development-branch"]
+      },
+      {
+        name: "systematic-debugging",
+        category: "Engenharia e Processo",
+        type: "Validação",
+        level: "Investigação",
+        accent: "validation",
+        summary: "Guia investigação de bugs, falhas de teste ou comportamento inesperado antes de propor correção.",
+        functions: ["Reprodução", "Hipóteses", "Isolamento da causa raiz"],
+        practical: "Use quando algo quebra e há risco de corrigir sintoma em vez de causa.",
+        details: ["Começa pelo comportamento observado.", "Evita pular direto para solução provável.", "Valoriza evidência e redução do espaço de busca."],
+        prompt: "Use $systematic-debugging para investigar esta falha antes de corrigir.",
+        related: ["test-driven-development", "receiving-code-review", "verification-before-completion"]
+      },
+      {
+        name: "requesting-code-review",
+        category: "Revisão e Qualidade",
+        type: "Validação",
+        level: "Revisão",
+        accent: "validation",
+        summary: "Solicita revisão de código ao completar tarefas relevantes ou antes de integrar mudanças.",
+        functions: ["Revisão de requisitos", "Busca de riscos", "Checagem de testes faltantes"],
+        practical: "Use quando uma implementação importante parece pronta e precisa de uma segunda leitura crítica.",
+        details: ["Prioriza bugs, regressões e lacunas de teste.", "Ajuda antes de merge ou entrega.", "Funciona bem com planos de implementação."],
+        prompt: "Use $requesting-code-review para revisar esta mudança antes de finalizar.",
+        related: ["receiving-code-review", "verification-before-completion", "finishing-a-development-branch"]
+      },
+      {
+        name: "receiving-code-review",
+        category: "Revisão e Qualidade",
+        type: "Processo",
+        level: "Resposta a feedback",
+        accent: "process",
+        summary: "Ajuda a receber feedback de revisão com rigor técnico, verificando se a sugestão faz sentido antes de implementar.",
+        functions: ["Análise de feedback", "Validação técnica", "Implementação cuidadosa de comentários"],
+        practical: "Use quando alguém aponta um problema ou pede mudança e você precisa responder sem concordar no automático.",
+        details: ["Separa opinião, bug real e preferência de estilo.", "Confirma contexto antes de alterar.", "Evita mudanças performáticas."],
+        prompt: "Use $receiving-code-review para avaliar este comentário de revisão antes de aplicar.",
+        related: ["requesting-code-review", "systematic-debugging", "test-driven-development"]
+      },
+      {
+        name: "executing-plans",
+        category: "Engenharia e Processo",
+        type: "Processo",
+        level: "Execução",
+        accent: "process",
+        summary: "Executa planos escritos em uma sessão separada com checkpoints de revisão.",
+        functions: ["Ler plano", "Executar tarefas em ordem", "Verificar e reportar progresso"],
+        practical: "Use quando já existe um plano detalhado e a prioridade é executar com disciplina.",
+        details: ["Mantém a implementação ligada ao plano.", "Ajuda em mudanças longas.", "Reduz deriva de escopo."],
+        prompt: "Use $executing-plans para executar este plano tarefa por tarefa.",
+        related: ["writing-plans", "verification-before-completion", "requesting-code-review"]
+      },
+      {
+        name: "subagent-driven-development",
+        category: "Engenharia e Processo",
+        type: "Processo",
+        level: "Paralelismo controlado",
+        accent: "process",
+        summary: "Coordena execução de planos com subagentes independentes e revisões entre tarefas.",
+        functions: ["Delegação por tarefa", "Revisão em etapas", "Integração incremental"],
+        practical: "Use em planos com tarefas independentes e volume suficiente para valer a coordenação.",
+        details: ["Cada tarefa tem contexto focado.", "Revisões reduzem acúmulo de erros.", "Funciona melhor com plano claro."],
+        prompt: "Use $subagent-driven-development para executar este plano com agentes por tarefa.",
+        related: ["dispatching-parallel-agents", "writing-plans", "requesting-code-review"]
+      },
+      {
+        name: "dispatching-parallel-agents",
+        category: "Engenharia e Processo",
+        type: "Processo",
+        level: "Paralelismo",
+        accent: "process",
+        summary: "Orienta quando há duas ou mais tarefas independentes que podem rodar sem estado compartilhado.",
+        functions: ["Identificar independência", "Dividir tarefas", "Consolidar resultados"],
+        practical: "Use para acelerar pesquisa, leitura, auditoria ou tarefas que não dependem umas das outras.",
+        details: ["Evita paralelizar trabalho que disputa os mesmos arquivos.", "Melhora velocidade sem bagunçar estado.", "Exige síntese final."],
+        prompt: "Use $dispatching-parallel-agents para dividir estas tarefas independentes.",
+        related: ["subagent-driven-development", "requesting-code-review", "writing-plans"]
+      },
+      {
+        name: "using-git-worktrees",
+        category: "Gestão da Base de Skills",
+        type: "Processo",
+        level: "Isolamento",
+        accent: "process",
+        summary: "Garante workspace isolado para feature work usando ferramentas nativas ou git worktree.",
+        functions: ["Criar ambiente isolado", "Evitar conflito com alterações existentes", "Preparar execução segura"],
+        practical: "Use antes de trabalhos de feature quando a árvore atual pode ter mudanças ou outros fluxos em andamento.",
+        details: ["Protege alterações do usuário.", "Ajuda a manter contexto limpo.", "É útil antes de planos de implementação."],
+        prompt: "Use $using-git-worktrees para preparar um workspace isolado para esta feature.",
+        related: ["writing-plans", "finishing-a-development-branch", "sync-codex-skills"]
+      },
+      {
+        name: "finishing-a-development-branch",
+        category: "Gestão da Base de Skills",
+        type: "Processo",
+        level: "Integração",
+        accent: "process",
+        summary: "Guia o fechamento de um branch quando a implementação está completa e verificada.",
+        functions: ["Decidir merge, PR ou limpeza", "Checar estado final", "Orientar integração"],
+        practical: "Use depois que testes passam e a mudança precisa ser incorporada ou publicada.",
+        details: ["Não substitui verificação.", "Ajuda a escolher caminho de entrega.", "Evita deixar branches e worktrees soltos."],
+        prompt: "Use $finishing-a-development-branch para finalizar esta mudança já verificada.",
+        related: ["verification-before-completion", "using-git-worktrees", "sync-codex-skills"]
+      },
+      {
+        name: "sync-codex-skills",
+        category: "Gestão da Base de Skills",
+        type: "Processo",
+        level: "Sincronização",
+        accent: "process",
+        summary: "Mantém este repositório como fonte de verdade para skills pessoais do Codex entre máquinas.",
+        functions: ["Instalar symlink de skills", "Validar estrutura", "Commitar e publicar atualizações"],
+        practical: "Use quando adicionar, editar, instalar, validar ou publicar skills compartilhadas.",
+        details: ["Mantém skills em `skills/<skill-name>/`.", "Evita segredos e dados privados.", "Documenta rotina de install, pull, commit e push."],
+        prompt: "Use $sync-codex-skills para atualizar e publicar minha base compartilhada de skills.",
+        related: ["writing-skills", "using-git-worktrees", "verification-before-completion"]
+      },
+      {
+        name: "writing-skills",
+        category: "Gestão da Base de Skills",
+        type: "Produção",
+        level: "Autoria de skills",
+        accent: "production",
+        summary: "Orienta criação, edição e verificação de skills como documentação de processo testável.",
+        functions: ["Formato de SKILL.md", "Otimização de descoberta", "Validação de comportamento da skill"],
+        practical: "Use quando quiser criar uma nova skill ou melhorar uma existente para uso futuro.",
+        details: ["Defende descrições focadas em gatilhos.", "Mantém skills concisas e reutilizáveis.", "Sugere TDD aplicado a documentação de processo."],
+        prompt: "Use $writing-skills para criar ou melhorar esta skill.",
+        related: ["sync-codex-skills", "test-driven-development", "verification-before-completion"]
+      },
+      {
+        name: "using-superpowers",
+        category: "Gestão da Base de Skills",
+        type: "Processo",
+        level: "Orquestração",
+        accent: "process",
+        summary: "Estabelece a regra de procurar e usar skills relevantes desde o começo da conversa.",
+        functions: ["Checar skills aplicáveis", "Priorizar skills de processo", "Evitar pular fluxos obrigatórios"],
+        practical: "Use como skill inicial para manter o agente alinhado ao acervo e aos rituais de trabalho.",
+        details: ["Reforça que skills aplicáveis devem ser usadas.", "Define prioridade entre processo e implementação.", "Ajuda a manter consistência entre sessões."],
+        prompt: "Use $using-superpowers para iniciar uma tarefa respeitando o acervo de skills.",
+        related: ["brainstorming", "writing-plans", "sync-codex-skills"]
+      }
+    ];
+
+    const contextSections = [
+      {
+        id: "origem",
+        title: "Origem e objetivo",
+        body: "Este repositório centraliza e sincroniza skills pessoais do Codex usadas em diferentes máquinas. A ideia é ter uma fonte única de verdade para instruções, fluxos, referências e automações reutilizáveis."
+      },
+      {
+        id: "sincronizacao",
+        title: "Como a sincronização funciona",
+        body: "A pasta `skills/` é vinculada ao runtime do Codex por meio de `bash scripts/install.sh`, fazendo `~/.codex/skills` apontar para este repositório. Um `git pull` atualiza o acervo disponível em outra máquina."
+      },
+      {
+        id: "catalogo",
+        title: "Catálogo interativo de skills",
+        body: "O arquivo `index.html` apresenta o acervo como app instrutivo: categorias, busca, filtros, cards, detalhes, exemplos de uso e fluxos recomendados. Ele também possui esta aba para apresentar `CONTEXTO_DO_PROJETO.md` de forma organizada."
+      },
+      {
+        id: "categorias",
+        title: "Categorias atuais",
+        body: "O acervo combina produção HTML, UI/UX, dashboards, educação interativa, engenharia de processo, revisão, validação e gestão da própria base de skills."
+      },
+      {
+        id: "git",
+        title: "Git neste workspace",
+        body: "Este ambiente usa `.repo.git` e o wrapper `bash scripts/git-workspace.sh` porque o `.git` visível pode ser sintético. Em clones normais, comandos `git` comuns devem funcionar."
+      },
+      {
+        id: "cuidados",
+        title: "Cuidados importantes",
+        body: "A base não deve receber tokens, chaves, senhas, arquivos `.env`, dados privados de clientes ou configurações específicas demais de uma máquina. Skills devem permanecer reutilizáveis."
+      }
+    ];
+
+    const workflows = [
+      {
+        title: "Criar PWA com planilha",
+        text: "Combine html-pwa-appscript, google-sheets-dashboard e data-storytelling-dashboard.",
+        skills: ["html-pwa-appscript", "google-sheets-dashboard", "data-storytelling-dashboard"]
+      },
+      {
+        title: "Melhorar um HTML existente",
+        text: "Comece pela usabilidade, depois acabamento visual e verificação final.",
+        skills: ["html-ui-ux-reviewer", "visual-design-polish", "verification-before-completion"]
+      },
+      {
+        title: "Criar material didático interativo",
+        text: "Orquestre o material, desenhe a interação e revise a experiência.",
+        skills: ["orquestrar-material-didatico", "interactive-learning-html", "html-ui-ux-reviewer"]
+      },
+      {
+        title: "Adicionar uma nova skill",
+        text: "Crie, valide, sincronize e publique a skill sem contaminar a base.",
+        skills: ["writing-skills", "sync-codex-skills", "verification-before-completion"]
+      }
+    ];
+
+    const state = {
+      category: "Todas",
+      type: "Todos",
+      query: "",
+      selected: skills[0].name,
+      context: contextSections[0].id
+    };
+
+    const categoryFilters = document.getElementById("categoryFilters");
+    const typeFilters = document.getElementById("typeFilters");
+    const skillGrid = document.getElementById("skillGrid");
+    const skillDetail = document.getElementById("skillDetail");
+    const workflowList = document.getElementById("workflowList");
+    const searchInput = document.getElementById("searchInput");
+    const contextTimeline = document.getElementById("contextTimeline");
+    const contextIndex = document.getElementById("contextIndex");
+
+    function unique(values) {
+      return [...new Set(values)];
+    }
+
+    function matchesSkill(skill) {
+      const haystack = [
+        skill.name,
+        skill.category,
+        skill.type,
+        skill.summary,
+        skill.practical,
+        skill.prompt,
+        skill.functions.join(" "),
+        skill.details.join(" "),
+        skill.related.join(" ")
+      ].join(" ").toLowerCase();
+      const matchesQuery = !state.query || haystack.includes(state.query.toLowerCase());
+      const matchesCategory = state.category === "Todas" || skill.category === state.category;
+      const matchesType = state.type === "Todos" || skill.type === state.type;
+      return matchesQuery && matchesCategory && matchesType;
+    }
+
+    function renderFilter(container, values, activeValue, handler) {
+      container.innerHTML = "";
+      values.forEach((value) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `chip ${value === activeValue ? "active" : ""}`;
+        button.textContent = value;
+        button.addEventListener("click", () => handler(value));
+        container.appendChild(button);
+      });
+    }
+
+    function renderStats() {
+      document.getElementById("totalSkills").textContent = skills.length;
+      document.getElementById("totalCategories").textContent = unique(skills.map((skill) => skill.category)).length;
+      document.getElementById("productionCount").textContent = skills.filter((skill) => skill.type === "Produção").length;
+      document.getElementById("processCount").textContent = skills.filter((skill) => skill.type === "Processo" || skill.type === "Validação").length;
+    }
+
+    function renderSkills() {
+      const filtered = skills.filter(matchesSkill);
+      skillGrid.innerHTML = "";
+
+      if (!filtered.length) {
+        skillGrid.innerHTML = `<div class="empty">Nenhuma skill encontrada com os filtros atuais.</div>`;
+        return;
+      }
+
+      if (!filtered.some((skill) => skill.name === state.selected)) {
+        state.selected = filtered[0].name;
+      }
+
+      filtered.forEach((skill) => {
+        const card = document.createElement("article");
+        card.className = `skill-card ${skill.name === state.selected ? "selected" : ""}`;
+        card.innerHTML = `
+          <div>
+            <h2>${skill.name}</h2>
+            <div class="meta-line">
+              <span class="badge ${skill.accent}">${skill.type}</span>
+              <span class="badge">${skill.category}</span>
+              <span class="badge">${skill.level}</span>
+            </div>
+            <p>${skill.summary}</p>
+            <ul class="function-list">
+              ${skill.functions.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="primary-button" type="button" data-action="details">Ver detalhes</button>
+            <button class="secondary-button" type="button" data-action="example">Exemplo prático</button>
+            <button class="secondary-button" type="button" data-action="prompt">Como invocar</button>
+          </div>
+        `;
+        card.querySelector('[data-action="details"]').addEventListener("click", () => selectSkill(skill.name, "details"));
+        card.querySelector('[data-action="example"]').addEventListener("click", () => selectSkill(skill.name, "example"));
+        card.querySelector('[data-action="prompt"]').addEventListener("click", () => selectSkill(skill.name, "prompt"));
+        card.addEventListener("click", (event) => {
+          if (!event.target.closest("button")) selectSkill(skill.name, "details");
+        });
+        skillGrid.appendChild(card);
+      });
+
+      renderDetail("details");
+    }
+
+    function selectSkill(name, mode = "details") {
+      state.selected = name;
+      renderSkills();
+      renderDetail(mode);
+      skillDetail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function renderDetail(mode = "details") {
+      const skill = skills.find((item) => item.name === state.selected) || skills[0];
+      skillDetail.innerHTML = `
+        <div class="meta-line">
+          <span class="badge ${skill.accent}">${skill.type}</span>
+          <span class="badge">${skill.category}</span>
+        </div>
+        <h2>${skill.name}</h2>
+        <p>${skill.summary}</p>
+
+        <div class="detail-section">
+          <h2>Aplicação prática</h2>
+          <div class="example-box">${skill.practical}</div>
+        </div>
+
+        <div class="detail-section">
+          <h2>Informações completas resumidas</h2>
+          <ul class="detail-list">
+            ${skill.details.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </div>
+
+        <div class="detail-section">
+          <h2>Como invocar</h2>
+          <div class="prompt-box">${skill.prompt}</div>
+        </div>
+
+        <div class="detail-section">
+          <h2>Combina bem com</h2>
+          <div class="meta-line">
+            ${skill.related.map((item) => `<button class="chip" type="button" data-related="${item}">${item}</button>`).join("")}
+          </div>
+        </div>
+      `;
+
+      if (mode === "example") {
+        skillDetail.querySelector(".example-box").style.borderColor = "rgba(79, 209, 197, .75)";
+      }
+      if (mode === "prompt") {
+        skillDetail.querySelector(".prompt-box").style.borderColor = "rgba(244, 199, 111, .78)";
+      }
+
+      skillDetail.querySelectorAll("[data-related]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.category = "Todas";
+          state.type = "Todos";
+          state.query = "";
+          searchInput.value = "";
+          renderFilters();
+          selectSkill(button.dataset.related, "details");
+        });
+      });
+    }
+
+    function renderWorkflows() {
+      workflowList.innerHTML = "";
+      workflows.forEach((workflow) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "workflow-card";
+        button.innerHTML = `<strong>${workflow.title}</strong><span>${workflow.text}</span>`;
+        button.addEventListener("click", () => {
+          state.query = workflow.skills.join(" ");
+          state.category = "Todas";
+          state.type = "Todos";
+          searchInput.value = state.query;
+          renderFilters();
+          renderSkills();
+        });
+        workflowList.appendChild(button);
+      });
+    }
+
+    function renderContext() {
+      contextIndex.innerHTML = "";
+      contextTimeline.innerHTML = "";
+
+      contextSections.forEach((section) => {
+        const indexButton = document.createElement("button");
+        indexButton.type = "button";
+        indexButton.className = section.id === state.context ? "active" : "";
+        indexButton.textContent = section.title;
+        indexButton.addEventListener("click", () => {
+          state.context = section.id;
+          renderContext();
+          document.getElementById(`context-${section.id}`).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        contextIndex.appendChild(indexButton);
+
+        const card = document.createElement("article");
+        card.className = `context-card ${section.id === state.context ? "active" : ""}`;
+        card.id = `context-${section.id}`;
+        card.innerHTML = `<h2>${section.title}</h2><p>${section.body}</p>`;
+        card.addEventListener("click", () => {
+          state.context = section.id;
+          renderContext();
+        });
+        contextTimeline.appendChild(card);
+      });
+    }
+
+    function renderFilters() {
+      renderFilter(categoryFilters, ["Todas", ...unique(skills.map((skill) => skill.category))], state.category, (value) => {
+        state.category = value;
+        renderFilters();
+        renderSkills();
+      });
+      renderFilter(typeFilters, ["Todos", ...unique(skills.map((skill) => skill.type))], state.type, (value) => {
+        state.type = value;
+        renderFilters();
+        renderSkills();
+      });
+    }
+
+    document.querySelectorAll("[data-tab]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const tab = button.dataset.tab;
+        document.querySelectorAll("[data-tab]").forEach((item) => item.classList.toggle("active", item.dataset.tab === tab));
+        document.getElementById("catalogView").classList.toggle("active", tab === "catalog");
+        document.getElementById("contextView").classList.toggle("active", tab === "context");
+      });
+    });
+
+    searchInput.addEventListener("input", (event) => {
+      state.query = event.target.value.trim();
+      renderSkills();
+    });
+
+    document.getElementById("resetFilters").addEventListener("click", () => {
+      state.category = "Todas";
+      state.type = "Todos";
+      state.query = "";
+      searchInput.value = "";
+      renderFilters();
+      renderSkills();
+    });
+
+    renderStats();
+    renderFilters();
+    renderWorkflows();
+    renderSkills();
+    renderContext();
+  </script>
+</body>
+</html>

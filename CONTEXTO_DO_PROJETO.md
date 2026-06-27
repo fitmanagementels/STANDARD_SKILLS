@@ -4,6 +4,8 @@ Este repositório existe para centralizar e sincronizar as skills pessoais do Co
 
 O objetivo é simples: manter uma pasta padrão de skills versionada no GitHub, permitindo que qualquer máquina configurada com este repositório tenha acesso ao mesmo conjunto de instruções, fluxos, referências e automações.
 
+Além da sincronização, o projeto agora também possui um Catálogo interativo de skills em `index.html`. Esse app local apresenta o acervo por categorias, mostra informações resumidas e completas de cada skill, sugere fluxos práticos de combinação e inclui uma aba dedicada a este `CONTEXTO_DO_PROJETO.md`.
+
 ## Por que este projeto existe
 
 O usuário trabalha em várias máquinas e alterna entre projetos diferentes no VS Code. Sem uma estrutura compartilhada, cada máquina pode acabar com skills diferentes, versões antigas ou configurações manuais difíceis de reproduzir.
@@ -48,8 +50,11 @@ Assim, quando o repositório recebe `git pull`, as skills disponíveis para o Co
 
 ```text
 .
+├── index.html
 ├── README.md
 ├── CONTEXTO_DO_PROJETO.md
+├── tests/
+│   └── verify-skill-catalog-app.sh
 ├── scripts/
 │   ├── git-workspace.sh
 │   └── install.sh
@@ -62,6 +67,33 @@ Assim, quando o repositório recebe `git pull`, as skills disponíveis para o Co
             └── machine-setup.md
 ```
 
+## Catálogo interativo de skills
+
+O arquivo `index.html` funciona como uma aplicação instrutiva local para navegar pelo acervo acumulado.
+
+Ele foi criado para não ser uma apresentação estática, mas um app com:
+
+- Aba principal de catálogo de skills.
+- Aba de contexto do projeto, baseada neste `CONTEXTO_DO_PROJETO.md`.
+- Busca por nome, descrição, função, aplicação prática e prompt.
+- Filtros por categoria e tipo.
+- Cards resumidos para leitura rápida.
+- Painel de detalhes com informações completas resumidas.
+- Exemplos de uso e prompts de invocação.
+- Fluxos recomendados para combinar skills em cenários reais.
+
+As categorias principais do catálogo são:
+
+- Produção HTML e Apps.
+- Design, UI e UX.
+- Dados e Dashboards.
+- Educação Interativa.
+- Engenharia e Processo.
+- Revisão e Qualidade.
+- Gestão da Base de Skills.
+
+O app usa tema escuro com superfícies em cinza, acentos visuais discretos e layout responsivo para consulta confortável.
+
 ## Skills incluídas
 
 A primeira skill criada localmente foi:
@@ -71,6 +103,18 @@ sync-codex-skills
 ```
 
 Ela documenta o fluxo para instalar, atualizar, validar e publicar skills entre máquinas.
+
+Depois, o acervo passou a incluir skills específicas para ampliar a produção de HTMLs, apps e materiais didáticos:
+
+- `html-pwa-appscript`
+- `google-sheets-dashboard`
+- `data-storytelling-dashboard`
+- `html-ui-ux-reviewer`
+- `visual-design-polish`
+- `interactive-learning-html`
+- `orquestrar-material-didatico`
+
+Essas skills foram pensadas para reduzir limitações de produção, melhorar UI/UX, enriquecer dashboards, estruturar apps com Google Sheets/App Script e criar conteúdos didáticos interativos.
 
 Também foi importado o pacote Superpowers, do repositório:
 
@@ -156,3 +200,13 @@ bash scripts/install.sh
 ```
 
 Depois disso, essa máquina passa a usar as mesmas skills versionadas neste repositório.
+
+## Validação do catálogo
+
+Quando alterar o app ou a documentação ligada ao catálogo, rode:
+
+```bash
+bash tests/verify-skill-catalog-app.sh
+```
+
+Esse teste confere a presença das abas, filtros, painel de detalhes, fluxos recomendados, skills principais e referências ao `CONTEXTO_DO_PROJETO.md`.
