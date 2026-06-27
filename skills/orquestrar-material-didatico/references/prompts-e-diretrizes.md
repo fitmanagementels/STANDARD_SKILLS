@@ -2,6 +2,19 @@
 
 Use esta referencia para criar prompts e fontes-diretriz para ferramentas externas.
 
+## Principio pratico
+
+Use prompts para deslocar trabalho pesado para as IAs certas. O usuario nao deve precisar digitar longos blocos de conteudo teorico quando Perplexity, Open Evidence, NotebookLM, Gemini ou RAG podem buscar, extrair, sintetizar ou reorganizar esse conteudo.
+
+Ao criar prompts, seja diretivo:
+
+- diga qual ferramenta usar;
+- diga o que colar ou subir;
+- entregue o prompt pronto;
+- diga o que salvar;
+- diga o que trazer de volta ao Codex;
+- evite perguntas desnecessarias antes de entregar uma primeira rodada executavel.
+
 ## Estrutura base de prompt externo
 
 Todo prompt para ferramenta externa deve vir acompanhado de um bloco operacional:

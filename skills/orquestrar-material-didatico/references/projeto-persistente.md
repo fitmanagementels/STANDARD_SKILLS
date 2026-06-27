@@ -15,7 +15,7 @@ Manter o projeto em arquivos persistentes para:
 
 ## Quando propor
 
-Proponha criar pasta persistente quando:
+Crie ou proponha pasta persistente quando:
 
 - o usuario estiver desenvolvendo uma aula real;
 - houver mais de um produto final;
@@ -23,6 +23,10 @@ Proponha criar pasta persistente quando:
 - o usuario for usar NotebookLM, Perplexity, Gemini ou RAG;
 - houver outputs para revisar;
 - o trabalho provavelmente continuara em outra sessao.
+
+Se a intencao de iniciar projeto real estiver clara e a pasta puder ser criada com seguranca no workspace atual, crie a estrutura padrao sem pedir confirmacao. Informe o que foi criado e quais suposicoes foram usadas.
+
+Pergunte antes apenas se houver risco de sobrescrever arquivos, destino fora do workspace, nome ambíguo ou acao destrutiva.
 
 Nao force persistencia para perguntas pequenas, brainstorming rapido ou testes sem compromisso.
 
@@ -73,6 +77,8 @@ Atualize ou proponha atualizar arquivos assim:
 - HTML, CSS, JS e assets interativos -> `html/`.
 
 Quando o usuario trouxer novo conteudo no chat, pergunte se deve ser incorporado ao arquivo correspondente. Se a resposta for obvia pelo fluxo, proponha a atualizacao e execute quando estiver autorizado.
+
+Em modo pratico, evite pedir que o usuario preencha arquivos do zero. Preencha versoes iniciais com base no briefing e deixe lacunas marcadas como `Pendente` ou `Assumido`. O usuario deve corrigir o que estiver desalinhado.
 
 ## Conteudo minimo dos arquivos
 

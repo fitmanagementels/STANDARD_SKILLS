@@ -13,15 +13,35 @@ Evitar conversas soltas. Cada sessao deve:
 5. definir o que deve voltar para revisao;
 6. atualizar o estado do projeto.
 
+## Modo pratico
+
+O usuario quer baixo atrito e pouca digitacao. Portanto:
+
+- avance com suposicoes explicitas quando a decisao for reversivel;
+- crie estruturas padrao sem pedir permissao quando a intencao for clara e a operacao for segura no workspace;
+- pergunte apenas o que muda a direcao do projeto;
+- entregue prompts prontos para copiar e colar;
+- use IAs de busca/texto para gerar conteudo teorico em vez de pedir que o usuario digite esse conteudo;
+- chame o usuario principalmente para corrigir direcao, validar gosto/objetivo ou trazer outputs externos.
+
+Nao use perguntas como forma de adiar trabalho operacional. Se o proximo passo padrao for claro, execute.
+
 ## Inicio de projeto
 
 Quando o usuario comecar um material novo:
 
-1. Proponha criar pasta persistente se o trabalho for real.
-2. Defina ou sugira um slug de pasta.
-3. Crie ou proponha `00-estado-atual.md`.
-4. Preencha o briefing minimo.
-5. Termine com a proxima acao recomendada.
+1. Crie pasta persistente se o trabalho for real e o destino for seguro.
+2. Defina um slug de pasta a partir do tema.
+3. Crie `00-estado-atual.md` e os arquivos-base padrao.
+4. Preencha a primeira versao dos arquivos com o briefing inferido e suposicoes explicitas.
+5. Termine com a proxima acao recomendada e um prompt externo pronto.
+
+Pergunte antes de criar somente se:
+
+- houver risco de sobrescrever arquivos existentes;
+- o destino for fora do workspace permitido;
+- o tema nao permitir nome de pasta minimamente claro;
+- a criacao exigir acao destrutiva ou credenciais.
 
 Formato de resposta:
 
@@ -29,12 +49,12 @@ Formato de resposta:
 Etapa atual:
 [briefing inicial]
 
-Arquivos a criar/atualizar:
+Arquivos criados/atualizados:
 - 00-estado-atual.md
 - 00-briefing.md
 
 Proxima acao:
-[pergunta ou tarefa]
+[prompt externo, tarefa ou pergunta essencial]
 ```
 
 ## Retomada de projeto
@@ -85,6 +105,8 @@ Salvar resultado em:
 Trazer de volta ao Codex:
 [o que o usuario deve retornar]
 ```
+
+O prompt deve transferir trabalho para a ferramenta externa. Evite pedir que o usuario escreva manualmente conteudo teorico que Perplexity, Open Evidence, NotebookLM, Gemini ou RAG podem buscar, extrair ou sintetizar.
 
 Se o prompt for grande ou o produto complexo, divida em rodadas. Prefira tres prompts bons e verificaveis a um prompt enorme que a ferramenta pode ignorar.
 

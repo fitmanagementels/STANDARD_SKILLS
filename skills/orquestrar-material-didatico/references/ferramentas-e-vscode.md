@@ -37,6 +37,8 @@ Use como diretor do processo e oficina tecnica:
 - ajustar arquivos no VS Code;
 - validar estrutura e responsividade.
 
+Nao use Codex para exigir que o usuario digite manualmente conteudo teorico extenso. Use Codex para preparar a rodada e depois enviar o trabalho de busca/extracao/sintese para a ferramenta mais adequada.
+
 ### Perplexity Pro
 
 Use para busca exploratoria e sintese inicial:
@@ -46,6 +48,8 @@ Use para busca exploratoria e sintese inicial:
 - descobrir termos e autores;
 - comparar abordagens;
 - gerar lista inicial de fontes.
+
+Use Perplexity para poupar digitacao do usuario quando ainda nao houver fontes fechadas. Codex deve gerar o prompt de busca e depois transformar a resposta em fontes, lacunas e proximas diretrizes.
 
 Nao trate sintese do Perplexity como verdade final quando o tema for sensivel. Peca fontes e revise.
 
@@ -74,6 +78,8 @@ Use quando houver fontes fechadas:
 - criterios de validacao.
 
 Trate documentos-diretriz como fontes do NotebookLM. Isso costuma funcionar melhor do que depender apenas de um prompt longo.
+
+Use NotebookLM como motor principal de producao quando o usuario ja tiver fontes teoricas e fontes-diretriz suficientes. Codex deve preparar os arquivos e prompts, e o usuario deve trazer o output para validacao.
 
 ### Gemini Plus/Pro
 

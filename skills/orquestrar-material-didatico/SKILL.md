@@ -9,6 +9,8 @@ description: Orchestrate the creative workflow for educational material producti
 
 Atue como diretor do fluxo de producao didatica, nao como gerador automatico de todos os produtos. Guie o usuario por etapas, produza prompts e documentos-diretriz para ferramentas externas, receba outputs produzidos fora do Codex, revise criticamente e gere correcoes ate o material ficar alinhado ao objetivo.
 
+Trabalhe em modo pratico: minimize digitacao do usuario, assuma decisoes reversiveis, crie estruturas padrao sem pedir confirmacao quando a intencao for clara e entregue proximas acoes prontas para executar em outras IAs. O usuario deve ser chamado principalmente para corrigir direcao, validar preferencias importantes ou fornecer outputs externos.
+
 Fluxo essencial:
 
 ```text
@@ -46,15 +48,17 @@ Para projetos persistentes, siga tambem o protocolo de sessao em `references/pro
 
 ## Persistencia do Projeto
 
-Quando o usuario estiver criando um material didatico real, proponha trabalhar em uma pasta de projeto persistente. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
+Quando o usuario estiver criando um material didatico real, trabalhe em uma pasta de projeto persistente por padrao. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
 
-Antes de avancar em uma etapa longa, verifique:
+Nao pergunte "posso criar os arquivos base?" quando a intencao de iniciar um projeto real ja estiver clara e a pasta puder ser criada com seguranca no workspace atual. Crie a estrutura padrao, preencha uma primeira versao util com suposicoes explicitas e informe o que foi criado. Pergunte antes apenas quando houver risco de sobrescrever projeto existente, destino fora do workspace permitido, nome ambíguo, ou impacto destrutivo.
+
+Antes de avancar em uma etapa longa em projeto ja existente, verifique:
 
 1. Ja existe uma pasta de projeto para este material?
-2. O usuario quer criar uma agora?
-3. Qual arquivo representa o estado atual do trabalho?
+2. Qual arquivo representa o estado atual do trabalho?
+3. Qual e a proxima decisao que realmente precisa do usuario?
 
-Se o usuario aceitar, mantenha briefing, arquitetura, roteiro, fontes, diretrizes, prompts, outputs e revisoes em arquivos Markdown separados. Para estrutura, nomes de arquivos e regras de atualizacao, leia `references/projeto-persistente.md`.
+Mantenha briefing, arquitetura, roteiro, fontes, diretrizes, prompts, outputs e revisoes em arquivos Markdown separados. Para estrutura, nomes de arquivos e regras de atualizacao, leia `references/projeto-persistente.md`.
 
 ## Fluxo Central
 
@@ -83,6 +87,8 @@ Carregue apenas as referencias necessarias:
 ## Regras de Ferramentas
 
 Priorize ferramentas ja pagas ou disponiveis para o usuario: Codex/GPT Max, Perplexity Pro, NotebookLM e Gemini Plus/Pro no navegador. Sugira ferramentas gratuitas externas apenas quando houver vantagem objetiva e menor complexidade.
+
+Use IAs de busca/texto para gerar ou extrair conteudo teorico quando isso reduzir digitacao do usuario. Use Codex para dirigir o processo, transformar outputs em diretrizes, criar prompts, organizar arquivos, validar produtos e corrigir rota.
 
 Use Codex/VS Code como oficina principal para HTML, prototipos interativos, validacao visual e organizacao de arquivos. Sugira extensoes do VS Code somente quando resolverem uma necessidade concreta.
 
