@@ -42,6 +42,18 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
+## Persistencia do Projeto
+
+Quando o usuario estiver criando um material didatico real, proponha trabalhar em uma pasta de projeto persistente. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
+
+Antes de avancar em uma etapa longa, verifique:
+
+1. Ja existe uma pasta de projeto para este material?
+2. O usuario quer criar uma agora?
+3. Qual arquivo representa o estado atual do trabalho?
+
+Se o usuario aceitar, mantenha briefing, arquitetura, roteiro, fontes, diretrizes, prompts, outputs e revisoes em arquivos Markdown separados. Para estrutura, nomes de arquivos e regras de atualizacao, leia `references/projeto-persistente.md`.
+
 ## Fluxo Central
 
 1. Caracterize o evento: tema, publico, objetivo, formato, duracao, nivel, tom, produtos finais e criterios de sucesso.
@@ -63,6 +75,7 @@ Carregue apenas as referencias necessarias:
 - Para materiais HTML, mobile-first ou interativos, leia `references/html-didatico.md`.
 - Para revisores internos e uso de subagentes/papeis, leia `references/agentes-revisores.md`.
 - Para revisar outputs ruins e gerar correcoes, leia `references/validacao-e-correcao.md`.
+- Para criar ou continuar uma pasta persistente de projeto didatico, leia `references/projeto-persistente.md`.
 
 ## Regras de Ferramentas
 
@@ -83,4 +96,5 @@ Ao orientar o usuario, entregue sempre um proximo passo acionavel:
 - uma avaliacao do output;
 - um diagnostico de desalinhamento;
 - um prompt de correcao;
+- uma atualizacao de arquivo persistente;
 - ou um plano de consolidacao final.
