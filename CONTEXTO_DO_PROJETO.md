@@ -4,7 +4,7 @@ Este repositório existe para centralizar e sincronizar as skills pessoais do Co
 
 O objetivo é simples: manter uma pasta padrão de skills versionada no GitHub, permitindo que qualquer máquina configurada com este repositório tenha acesso ao mesmo conjunto de instruções, fluxos, referências e automações.
 
-Além da sincronização, o projeto agora também possui um Catálogo interativo de skills em `index.html`. Esse app local apresenta o acervo por categorias, mostra informações resumidas e completas de cada skill, sugere fluxos práticos de combinação e inclui uma aba dedicada a este `CONTEXTO_DO_PROJETO.md`.
+Além da sincronização, o projeto agora também possui um Catálogo interativo de skills em `Catálogo de Skills.html`. Esse app local apresenta o acervo por categorias, mostra informações resumidas e completas de cada skill, sugere fluxos práticos de combinação e inclui uma aba dedicada a este `CONTEXTO_DO_PROJETO.md`.
 
 ## Por que este projeto existe
 
@@ -50,7 +50,7 @@ Assim, quando o repositório recebe `git pull`, as skills disponíveis para o Co
 
 ```text
 .
-├── index.html
+├── Catálogo de Skills.html
 ├── README.md
 ├── CONTEXTO_DO_PROJETO.md
 ├── tests/
@@ -69,16 +69,16 @@ Assim, quando o repositório recebe `git pull`, as skills disponíveis para o Co
 
 ## Catálogo interativo de skills
 
-O arquivo `index.html` funciona como uma aplicação instrutiva local para navegar pelo acervo acumulado.
+O arquivo `Catálogo de Skills.html` funciona como uma aplicação instrutiva local para navegar pelo acervo acumulado.
 
 Ele foi criado para não ser uma apresentação estática, mas um app com:
 
 - Aba principal de catálogo de skills.
 - Aba de contexto do projeto, baseada neste `CONTEXTO_DO_PROJETO.md`.
 - Busca por nome, descrição, função, aplicação prática e prompt.
-- Filtros por categoria e tipo.
-- Cards resumidos para leitura rápida.
-- Painel de detalhes com informações completas resumidas.
+- Filtros retráteis por categoria e tipo.
+- Cards compactos para leitura rápida.
+- Painel de detalhes aberto sob demanda com informações completas resumidas.
 - Exemplos de uso e prompts de invocação.
 - Fluxos recomendados para combinar skills em cenários reais.
 

@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Base Universal de Skills</title>
+  <title>Catálogo de Skills</title>
   <style>
     :root {
       color-scheme: dark;
-      --bg: #111315;
-      --surface: #171a1e;
-      --surface-2: #1e2328;
-      --surface-3: #262c33;
+      --bg: #101214;
+      --surface: #16191d;
+      --surface-2: #1c2025;
+      --surface-3: #242a31;
       --line: #343b44;
       --text: #eef2f5;
       --muted: #aeb7c2;
@@ -22,7 +22,7 @@
       --green: #8bd48b;
       --blue: #8ebcff;
       --radius: 8px;
-      --shadow: 0 24px 60px rgba(0, 0, 0, .28);
+      --shadow: 0 18px 42px rgba(0, 0, 0, .22);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
@@ -33,10 +33,7 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        linear-gradient(135deg, rgba(79, 209, 197, .08), transparent 26%),
-        linear-gradient(315deg, rgba(244, 199, 111, .06), transparent 26%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text);
     }
 
@@ -53,15 +50,15 @@
     .app {
       width: min(1480px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 28px 0 42px;
+      padding: 22px 0 42px;
     }
 
     .topbar {
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 20px;
-      align-items: end;
-      margin-bottom: 20px;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
     .eyebrow {
@@ -74,18 +71,18 @@
     }
 
     h1 {
-      font-size: clamp(2rem, 4vw, 4.2rem);
-      line-height: .96;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1;
       letter-spacing: 0;
       margin: 0;
-      max-width: 780px;
+      max-width: 640px;
     }
 
     .intro {
       color: var(--muted);
-      max-width: 760px;
+      max-width: 720px;
       line-height: 1.6;
-      margin: 14px 0 0;
+      margin: 10px 0 0;
     }
 
     .top-actions {
@@ -125,13 +122,13 @@
     .stats {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin: 18px 0 22px;
+      gap: 10px;
+      margin: 14px 0 16px;
     }
 
     .stat {
-      min-height: 86px;
-      padding: 14px;
+      min-height: 64px;
+      padding: 10px 12px;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(30, 35, 40, .82);
@@ -139,14 +136,14 @@
 
     .stat strong {
       display: block;
-      font-size: 1.7rem;
+      font-size: 1.25rem;
       line-height: 1;
       margin-bottom: 8px;
     }
 
     .stat span {
       color: var(--muted);
-      font-size: .88rem;
+      font-size: .8rem;
     }
 
     .panel {
@@ -158,15 +155,15 @@
 
     .toolbar {
       display: grid;
-      grid-template-columns: minmax(220px, 1fr) auto;
-      gap: 12px;
-      padding: 14px;
-      margin-bottom: 14px;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
     }
 
     .search {
       width: 100%;
-      min-height: 46px;
+      min-height: 42px;
       background: #101214;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -189,14 +186,37 @@
 
     .content-grid {
       display: grid;
-      grid-template-columns: minmax(280px, 1fr) minmax(360px, 440px);
-      gap: 14px;
+      grid-template-columns: minmax(320px, 1fr) minmax(320px, 400px);
+      gap: 12px;
       align-items: start;
     }
 
     .catalog-main {
       display: grid;
-      gap: 14px;
+      gap: 10px;
+    }
+
+    .filter-panel {
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .filter-panel[hidden] {
+      display: none;
+    }
+
+    .filter-group {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .filter-label {
+      color: var(--soft);
+      font-size: .78rem;
+      font-weight: 720;
+      text-transform: uppercase;
+      letter-spacing: .08em;
     }
 
     .category-strip,
@@ -209,30 +229,29 @@
 
     .skill-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 10px;
     }
 
-    .skill-card {
-      display: flex;
-      min-height: 260px;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 16px;
+    .compact-skill-card {
+      display: grid;
+      gap: 10px;
+      min-height: 148px;
+      padding: 14px;
       border-radius: var(--radius);
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(38, 44, 51, .94), rgba(25, 29, 34, .96));
+      background: rgba(29, 34, 40, .92);
       transition: border-color .18s ease, transform .18s ease, background .18s ease;
     }
 
-    .skill-card:hover,
-    .skill-card.selected {
+    .compact-skill-card:hover,
+    .compact-skill-card.selected {
       transform: translateY(-2px);
       border-color: rgba(79, 209, 197, .58);
-      background: linear-gradient(180deg, rgba(43, 51, 58, .98), rgba(27, 32, 37, .98));
+      background: rgba(34, 40, 47, .98);
     }
 
-    .skill-card h2,
+    .compact-skill-card h2,
     .detail h2,
     .context-card h2 {
       margin: 0;
@@ -240,18 +259,19 @@
       letter-spacing: 0;
     }
 
-    .skill-card p,
+    .compact-skill-card p,
     .detail p,
     .context-card p {
       color: var(--muted);
       line-height: 1.55;
+      margin: 0;
     }
 
     .meta-line {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      margin: 12px 0;
+      margin: 8px 0;
     }
 
     .badge {
@@ -272,7 +292,6 @@
     .badge.process { border-color: rgba(244, 199, 111, .45); color: #f8deb0; }
     .badge.validation { border-color: rgba(240, 154, 168, .45); color: #ffd0d7; }
 
-    .function-list,
     .detail-list {
       display: grid;
       gap: 8px;
@@ -281,7 +300,6 @@
       list-style: none;
     }
 
-    .function-list li,
     .detail-list li {
       color: var(--muted);
       line-height: 1.45;
@@ -289,7 +307,6 @@
       position: relative;
     }
 
-    .function-list li::before,
     .detail-list li::before {
       content: "";
       position: absolute;
@@ -305,7 +322,7 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
-      margin-top: 16px;
+      margin-top: 4px;
     }
 
     .primary-button,
@@ -327,7 +344,7 @@
     .detail {
       position: sticky;
       top: 14px;
-      padding: 18px;
+      padding: 16px;
       max-height: calc(100vh - 28px);
       overflow: auto;
     }
@@ -350,7 +367,7 @@
     }
 
     .workflow-panel {
-      padding: 14px;
+      padding: 12px;
     }
 
     .workflow-panel h2,
@@ -361,14 +378,14 @@
 
     .workflow-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
     }
 
     .workflow-card {
       text-align: left;
-      min-height: 128px;
-      padding: 14px;
+      min-height: 98px;
+      padding: 12px;
       border-radius: var(--radius);
       background: #20262c;
       color: var(--text);
@@ -466,7 +483,6 @@
 
     @media (max-width: 1080px) {
       .topbar,
-      .toolbar,
       .content-grid,
       .context-layout {
         grid-template-columns: 1fr;
@@ -493,6 +509,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
       .card-actions {
         grid-template-columns: 1fr;
       }
@@ -504,8 +524,8 @@
     <header class="topbar">
       <div>
         <p class="eyebrow">Base universal de skills</p>
-        <h1>Um app para entender, escolher e combinar suas skills.</h1>
-        <p class="intro">Catálogo interativo das instruções acumuladas neste repositório. Use para descobrir quando acionar cada skill, como combinar fluxos e como manter o histórico do projeto visível.</p>
+        <h1>Catálogo de Skills</h1>
+        <p class="intro">Uma biblioteca interativa para encontrar skills, entender quando usar cada uma e abrir detalhes só quando precisar.</p>
       </div>
       <nav class="top-actions" aria-label="Abas principais">
         <button class="tab-button active" type="button" data-tab="catalog" id="catalogTab">Catálogo de skills</button>
@@ -524,21 +544,27 @@
       <section class="view active" id="catalogView" aria-label="Catálogo interativo de skills">
         <div class="panel toolbar">
           <input class="search" id="searchInput" type="search" placeholder="Buscar por nome, função, aplicação ou exemplo..." aria-label="Buscar skills">
-          <div class="filter-row">
-            <button class="ghost-button" type="button" id="resetFilters">Limpar filtros</button>
+          <button class="ghost-button" type="button" id="toggleFilters" aria-expanded="false" aria-controls="filterPanel">Filtros</button>
+          <button class="ghost-button" type="button" id="resetFilters">Limpar</button>
+        </div>
+
+        <div class="panel filter-panel" id="filterPanel" hidden>
+          <div class="filter-group">
+            <span class="filter-label">Categorias</span>
+            <section class="category-strip" id="categoryFilters" aria-label="Categorias"></section>
           </div>
+          <div class="filter-group">
+            <span class="filter-label">Tipos</span>
+            <section class="type-strip" id="typeFilters" aria-label="Tipos"></section>
+          </div>
+          <section class="workflow-panel" aria-label="Fluxos recomendados">
+            <h2>Fluxos recomendados</h2>
+            <div class="workflow-list" id="workflowList"></div>
+          </section>
         </div>
 
         <div class="content-grid">
           <div class="catalog-main">
-            <section class="panel category-strip" id="categoryFilters" aria-label="Categorias"></section>
-            <section class="panel type-strip" id="typeFilters" aria-label="Tipos"></section>
-
-            <section class="workflow-panel panel" aria-label="Fluxos recomendados">
-              <h2>Fluxos recomendados</h2>
-              <div class="workflow-list" id="workflowList"></div>
-            </section>
-
             <section class="skill-grid" id="skillGrid" aria-label="Lista de skills"></section>
           </div>
 
@@ -863,7 +889,7 @@
       {
         id: "catalogo",
         title: "Catálogo interativo de skills",
-        body: "O arquivo `index.html` apresenta o acervo como app instrutivo: categorias, busca, filtros, cards, detalhes, exemplos de uso e fluxos recomendados. Ele também possui esta aba para apresentar `CONTEXTO_DO_PROJETO.md` de forma organizada."
+        body: "O arquivo `Catálogo de Skills.html` apresenta o acervo como app instrutivo: categorias, busca, filtros retráteis, cards compactos, detalhes, exemplos de uso e fluxos recomendados. Ele também possui esta aba para apresentar `CONTEXTO_DO_PROJETO.md` de forma organizada."
       },
       {
         id: "categorias",
@@ -909,7 +935,7 @@
       category: "Todas",
       type: "Todos",
       query: "",
-      selected: skills[0].name,
+      selected: null,
       context: contextSections[0].id
     };
 
@@ -919,6 +945,8 @@
     const skillDetail = document.getElementById("skillDetail");
     const workflowList = document.getElementById("workflowList");
     const searchInput = document.getElementById("searchInput");
+    const filterPanel = document.getElementById("filterPanel");
+    const toggleFilters = document.getElementById("toggleFilters");
     const contextTimeline = document.getElementById("contextTimeline");
     const contextIndex = document.getElementById("contextIndex");
 
@@ -972,30 +1000,25 @@
         return;
       }
 
-      if (!filtered.some((skill) => skill.name === state.selected)) {
-        state.selected = filtered[0].name;
+      if (state.selected && !filtered.some((skill) => skill.name === state.selected)) {
+        state.selected = null;
       }
 
       filtered.forEach((skill) => {
         const card = document.createElement("article");
-        card.className = `skill-card ${skill.name === state.selected ? "selected" : ""}`;
+        card.className = `compact-skill-card ${skill.name === state.selected ? "selected" : ""}`;
         card.innerHTML = `
-          <div>
-            <h2>${skill.name}</h2>
-            <div class="meta-line">
-              <span class="badge ${skill.accent}">${skill.type}</span>
-              <span class="badge">${skill.category}</span>
-              <span class="badge">${skill.level}</span>
-            </div>
-            <p>${skill.summary}</p>
-            <ul class="function-list">
-              ${skill.functions.map((item) => `<li>${item}</li>`).join("")}
-            </ul>
+          <div class="meta-line">
+            <span class="badge ${skill.accent}">${skill.type}</span>
+            <span class="badge">${skill.category}</span>
+            <span class="badge">${skill.level}</span>
           </div>
+          <h2>${skill.name}</h2>
+          <p>${skill.summary}</p>
           <div class="card-actions">
-            <button class="primary-button" type="button" data-action="details">Ver detalhes</button>
-            <button class="secondary-button" type="button" data-action="example">Exemplo prático</button>
-            <button class="secondary-button" type="button" data-action="prompt">Como invocar</button>
+            <button class="primary-button" type="button" data-action="details">Abrir</button>
+            <button class="secondary-button" type="button" data-action="example">Exemplo</button>
+            <button class="secondary-button" type="button" data-action="prompt">Invocar</button>
           </div>
         `;
         card.querySelector('[data-action="details"]').addEventListener("click", () => selectSkill(skill.name, "details"));
@@ -1018,14 +1041,41 @@
     }
 
     function renderDetail(mode = "details") {
-      const skill = skills.find((item) => item.name === state.selected) || skills[0];
+      const skill = skills.find((item) => item.name === state.selected);
+      if (!skill) {
+        skillDetail.innerHTML = `
+          <div class="meta-line">
+            <span class="badge">Exploração progressiva</span>
+          </div>
+          <h2>Abra uma skill para ver detalhes</h2>
+          <p>Os cards mostram apenas o essencial. Ao abrir uma skill, este painel exibe funções, aplicação prática, prompt de invocação e combinações úteis.</p>
+          <div class="detail-section">
+            <h2>Como começar</h2>
+            <ul class="detail-list">
+              <li>Use a busca para encontrar uma intenção de trabalho.</li>
+              <li>Abra filtros se quiser navegar por categoria ou tipo.</li>
+              <li>Clique em uma skill para expandir o contexto de uso.</li>
+            </ul>
+          </div>
+        `;
+        return;
+      }
+
       skillDetail.innerHTML = `
         <div class="meta-line">
           <span class="badge ${skill.accent}">${skill.type}</span>
           <span class="badge">${skill.category}</span>
+          <span class="badge">${skill.level}</span>
         </div>
         <h2>${skill.name}</h2>
         <p>${skill.summary}</p>
+
+        <div class="detail-section">
+          <h2>Funções resumidas</h2>
+          <ul class="detail-list">
+            ${skill.functions.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </div>
 
         <div class="detail-section">
           <h2>Aplicação prática</h2>
@@ -1152,6 +1202,13 @@
       searchInput.value = "";
       renderFilters();
       renderSkills();
+    });
+
+    toggleFilters.addEventListener("click", () => {
+      const nextOpen = filterPanel.hasAttribute("hidden");
+      filterPanel.toggleAttribute("hidden", !nextOpen);
+      toggleFilters.setAttribute("aria-expanded", String(nextOpen));
+      toggleFilters.textContent = nextOpen ? "Ocultar filtros" : "Filtros";
     });
 
     renderStats();

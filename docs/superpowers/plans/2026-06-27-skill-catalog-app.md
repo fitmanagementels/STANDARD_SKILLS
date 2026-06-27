@@ -4,13 +4,13 @@
 
 **Goal:** Build a single-file HTML app that teaches how to use the skills in this repository and update the project summary/history.
 
-**Architecture:** A static `index.html` contains structured skill data, project context data, CSS, and JavaScript interactions. Documentation changes live in `README.md` and `CONTEXTO_DO_PROJETO.md`. A shell verification script checks required files, content, and app affordances.
+**Architecture:** A static `Catálogo de Skills.html` contains structured skill data, project context data, CSS, and JavaScript interactions. Documentation changes live in `README.md` and `CONTEXTO_DO_PROJETO.md`. A shell verification script checks required files, content, and app affordances.
 
 **Tech Stack:** HTML, CSS, vanilla JavaScript, Markdown documentation, Bash verification.
 
 ## Global Constraints
 
-- Keep the app usable by opening `index.html` directly in a browser.
+- Keep the app usable by opening `Catálogo de Skills.html` directly in a browser.
 - Use a modern dark theme with diversified gray surfaces and restrained accents.
 - Include tabs for the skill catalog and the project context.
 - Show skill name, short description, summarized functions, practical application, complete summarized details, and example prompts.
@@ -24,16 +24,16 @@
 - Create: `tests/verify-skill-catalog-app.sh`
 
 **Interfaces:**
-- Consumes: `index.html`, `README.md`, `CONTEXTO_DO_PROJETO.md`
+- Consumes: `Catálogo de Skills.html`, `README.md`, `CONTEXTO_DO_PROJETO.md`
 - Produces: A deterministic shell check with exit code 0 only when the app and docs meet required structure.
 
 - [ ] Add checks for required files, app tabs, category filters, details panel, workflow shortcuts, project context tab, and required skill names.
-- [ ] Run `bash tests/verify-skill-catalog-app.sh` before implementation and confirm it fails because `index.html` is missing.
+- [ ] Run `bash tests/verify-skill-catalog-app.sh` before implementation and confirm it fails before the app meets the expected structure.
 
 ### Task 2: HTML App
 
 **Files:**
-- Create: `index.html`
+- Create: `Catálogo de Skills.html`
 
 **Interfaces:**
 - Consumes: skill metadata from `skills/*/SKILL.md` and project context from `CONTEXTO_DO_PROJETO.md`
@@ -60,7 +60,7 @@
 ### Task 4: Verification And Commit
 
 **Files:**
-- Validate: `index.html`, `README.md`, `CONTEXTO_DO_PROJETO.md`, `tests/verify-skill-catalog-app.sh`
+- Validate: `Catálogo de Skills.html`, `README.md`, `CONTEXTO_DO_PROJETO.md`, `tests/verify-skill-catalog-app.sh`
 
 **Interfaces:**
 - Consumes: all changed files.

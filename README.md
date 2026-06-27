@@ -4,7 +4,7 @@ Repositório padrão para sincronizar skills pessoais do Codex entre máquinas e
 
 ## Catálogo interativo
 
-Abra [index.html](/home/elohimlima/Downloads/VSCODE|ANTIGRAVITY/STANDARD_CONTEXT_IA/index.html) no navegador para navegar pelo acervo como um app local.
+Abra [Catálogo de Skills.html](/home/elohimlima/Downloads/VSCODE|ANTIGRAVITY/STANDARD_CONTEXT_IA/Catálogo%20de%20Skills.html) no navegador para navegar pelo acervo como um app local.
 
 O catálogo inclui:
 
@@ -19,7 +19,7 @@ O catálogo inclui:
 
 ```text
 .
-├── index.html
+├── Catálogo de Skills.html
 ├── skills/
 │   └── sync-codex-skills/
 └── scripts/
