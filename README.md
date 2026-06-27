@@ -12,6 +12,16 @@ Repositório padrão para sincronizar skills pessoais do Codex entre máquinas.
     └── install.sh
 ```
 
+## Skills incluídas
+
+Além da skill local `sync-codex-skills`, este repositório inclui o pacote de skills Superpowers importado de:
+
+```text
+https://github.com/obra/superpowers
+```
+
+A origem exata e a licença estão registradas em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
 ## Instalar em uma máquina
 
 Clone este repositório e rode:

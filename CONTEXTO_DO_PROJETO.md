@@ -62,15 +62,33 @@ Assim, quando o repositório recebe `git pull`, as skills disponíveis para o Co
             └── machine-setup.md
 ```
 
-## Skill inicial
+## Skills incluídas
 
-A primeira skill criada foi:
+A primeira skill criada localmente foi:
 
 ```text
 sync-codex-skills
 ```
 
 Ela documenta o fluxo para instalar, atualizar, validar e publicar skills entre máquinas.
+
+Também foi importado o pacote Superpowers, do repositório:
+
+```text
+https://github.com/obra/superpowers
+```
+
+Commit importado:
+
+```text
+896224c4b1879920ab573417e68fd51d2ccc9072
+```
+
+As notices e a licença MIT do projeto original estão em:
+
+```text
+THIRD_PARTY_NOTICES.md
+```
 
 ## Git neste workspace
 
