@@ -1,0 +1,4 @@
+interface:
+  display_name: "Orquestrar Material Didático"
+  short_description: "Produzir aula, slides, ebook e HTML didático"
+  default_prompt: "Use $orquestrar-material-didatico para me guiar na criação de uma aula com apresentação, apostila mobile e possíveis materiais HTML."
