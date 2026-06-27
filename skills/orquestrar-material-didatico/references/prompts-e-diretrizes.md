@@ -4,6 +4,30 @@ Use esta referencia para criar prompts e fontes-diretriz para ferramentas extern
 
 ## Estrutura base de prompt externo
 
+Todo prompt para ferramenta externa deve vir acompanhado de um bloco operacional:
+
+```text
+Onde usar:
+[Perplexity Pro / Open Evidence / NotebookLM / Gemini / outro]
+
+O que colar ou subir:
+[arquivos, trechos, fontes ou diretrizes]
+
+Prompt pronto:
+[texto para colar]
+
+Formato esperado da resposta:
+[lista, tabela, roteiro, documento, JSON, secoes etc.]
+
+O que trazer de volta ao Codex:
+[resultado, links, arquivo exportado, trechos problemáticos]
+
+Onde salvar:
+[caminho recomendado no projeto persistente]
+```
+
+Nao entregue apenas o prompt solto quando o usuario precisa executar a acao fora do Codex.
+
 ```text
 Contexto:
 [tema, publico, objetivo, formato, tom, produtos desejados]

@@ -42,6 +42,8 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
+Para projetos persistentes, siga tambem o protocolo de sessao em `references/protocolo-de-sessao.md`: iniciar/retomar estado, gerar prompts executaveis, receber outputs, revisar, decidir e atualizar o arquivo de estado.
+
 ## Persistencia do Projeto
 
 Quando o usuario estiver criando um material didatico real, proponha trabalhar em uma pasta de projeto persistente. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
@@ -76,6 +78,7 @@ Carregue apenas as referencias necessarias:
 - Para revisores internos e uso de subagentes/papeis, leia `references/agentes-revisores.md`.
 - Para revisar outputs ruins e gerar correcoes, leia `references/validacao-e-correcao.md`.
 - Para criar ou continuar uma pasta persistente de projeto didatico, leia `references/projeto-persistente.md`.
+- Para garantir execucao consistente de sessoes, prompts externos e validacoes, leia `references/protocolo-de-sessao.md`.
 
 ## Regras de Ferramentas
 

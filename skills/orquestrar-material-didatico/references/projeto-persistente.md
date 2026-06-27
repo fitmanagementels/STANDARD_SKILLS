@@ -33,6 +33,7 @@ Use uma pasta com nome claro e sem acentos, por exemplo:
 ```text
 projetos-didaticos/
 └── nome-da-aula/
+    ├── 00-estado-atual.md
     ├── 00-briefing.md
     ├── 01-arquitetura-logica.md
     ├── 02-roteiro-mestre.md
@@ -59,6 +60,7 @@ Se o usuario preferir outra raiz, use a pasta escolhida. Se nao houver preferenc
 
 Atualize ou proponha atualizar arquivos assim:
 
+- Estado do projeto e proxima acao -> `00-estado-atual.md`.
 - Briefing concluido -> `00-briefing.md`.
 - Arquitetura logica definida -> `01-arquitetura-logica.md`.
 - Roteiro aprovado -> `02-roteiro-mestre.md`.
@@ -73,6 +75,28 @@ Atualize ou proponha atualizar arquivos assim:
 Quando o usuario trouxer novo conteudo no chat, pergunte se deve ser incorporado ao arquivo correspondente. Se a resposta for obvia pelo fluxo, proponha a atualizacao e execute quando estiver autorizado.
 
 ## Conteudo minimo dos arquivos
+
+### `00-estado-atual.md`
+
+```markdown
+# Estado Atual
+
+## Etapa atual
+
+## Objetivo imediato
+
+## Decisoes ja tomadas
+
+## Arquivos principais
+
+## Ultima ferramenta usada
+
+## Output aguardado
+
+## Pendencias
+
+## Proxima acao recomendada
+```
 
 ### `00-briefing.md`
 
@@ -178,11 +202,12 @@ Inclua:
 
 Ao continuar um projeto persistente:
 
-1. Liste ou leia os arquivos principais.
-2. Identifique a etapa atual.
-3. Resuma estado, decisoes e pendencias.
-4. Pergunte apenas o que falta para seguir.
-5. Continue atualizando os arquivos, nao apenas o chat.
+1. Leia `00-estado-atual.md` primeiro, se existir.
+2. Liste ou leia os arquivos principais quando o estado estiver incompleto.
+3. Identifique a etapa atual.
+4. Resuma estado, decisoes e pendencias.
+5. Pergunte apenas o que falta para seguir.
+6. Continue atualizando os arquivos, nao apenas o chat.
 
 ## Uso com outras IAs
 
@@ -208,6 +233,7 @@ Para Gemini/chat:
 
 - Prefira Markdown para contexto e diretrizes.
 - Mantenha cada arquivo com uma funcao clara.
+- Atualize `00-estado-atual.md` ao final de cada etapa relevante.
 - Registre decisoes, nao apenas conteudo final.
 - Preserve outputs ruins quando eles forem uteis para diagnostico.
 - Nao misture fontes teoricas, prompts e revisoes no mesmo arquivo.

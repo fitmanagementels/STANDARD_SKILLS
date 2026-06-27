@@ -17,6 +17,16 @@ Compare o output contra:
 
 Nao revise apenas "qualidade geral"; revise desalinhamento contra a intencao.
 
+Toda revisao deve terminar com uma decisao objetiva:
+
+- `Aprovado`
+- `Aprovado com ajustes pequenos`
+- `Regerar uma parte`
+- `Regerar tudo`
+- `Mudar diretriz antes de tentar de novo`
+
+Depois da decisao, indique a proxima acao e o arquivo persistente que deve ser atualizado.
+
 ## Checklist geral
 
 - O objetivo da aula esta claro?
@@ -185,4 +195,10 @@ Prompt de correcao:
 
 O que trazer de volta:
 [qual output o usuario deve retornar ao Codex para nova revisao]
+
+Decisao:
+[Aprovado / Aprovado com ajustes pequenos / Regerar uma parte / Regerar tudo / Mudar diretriz antes de tentar de novo]
+
+Arquivo a atualizar:
+[caminho no projeto persistente]
 ```
