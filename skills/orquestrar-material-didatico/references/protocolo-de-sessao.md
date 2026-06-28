@@ -128,6 +128,20 @@ Quando faltar conteudo teorico, fontes, definicoes, autores, evidencias, exemplo
 
 Se o prompt for grande ou o produto complexo, divida em rodadas. Prefira tres prompts bons e verificaveis a um prompt enorme que a ferramenta pode ignorar.
 
+## Curadoria hibrida de evidencias
+
+Quando a etapa atual envolver fontes, base teorica, evidencia, definicoes ou exemplos, acione a curadoria hibrida:
+
+1. Transforme briefing e arquitetura em perguntas de pesquisa.
+2. Escolha a ferramenta com menor atrito e maior qualidade para aquela pergunta.
+3. Gere prompt pronto para a ferramenta externa.
+4. Salve ou proponha salvar o output bruto em `06-outputs-externos/`.
+5. Audite o output antes de transformar em conteudo consolidado.
+6. Proponha consolidacao em `03-fontes-e-evidencias.md`.
+7. Aguarde validacao do usuario antes de consolidar.
+
+Nao peca que o usuario escreva a base teorica. Peca que ele execute a rodada externa e traga o output para revisao.
+
 ## Recebimento de output externo
 
 Quando o usuario trouxer output de outra ferramenta:

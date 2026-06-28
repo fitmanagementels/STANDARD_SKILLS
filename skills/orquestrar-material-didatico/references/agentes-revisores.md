@@ -18,10 +18,12 @@ Pergunta central: "O aluno consegue chegar ao objetivo final seguindo esta seque
 
 ## Curador de evidencias
 
-Objetivo: organizar e limitar afirmacoes com base em fontes.
+Objetivo: dirigir a pesquisa hibrida, organizar fontes e limitar afirmacoes com base em evidencias.
 
 Avalia:
 
+- perguntas de pesquisa;
+- ferramenta mais adequada para cada rodada;
 - qualidade das fontes;
 - afirmacoes seguras;
 - afirmacoes especulativas;
@@ -30,6 +32,14 @@ Avalia:
 - risco de exagero.
 
 Pergunta central: "O material afirma apenas o que as fontes sustentam?"
+
+Responsabilidades operacionais:
+
+- gerar prompts para Perplexity, Open Evidence, RAG, NotebookLM ou Gemini;
+- receber outputs externos e separar achados uteis de ruido;
+- propor correcoes quando a ferramenta trouxer resposta generica, fraca ou sem fonte;
+- organizar `03-fontes-e-evidencias.md`;
+- pedir validacao antes de consolidar conteudo como base do projeto.
 
 ## Estrategista de ferramentas
 

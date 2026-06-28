@@ -18,6 +18,7 @@ ideia/tema
 -> arquitetura logica da aula
 -> roteiro mestre
 -> estrategia de fontes
+-> curadoria hibrida de evidencias
 -> documentos-diretriz
 -> prompts para ferramentas externas
 -> outputs externos
@@ -35,12 +36,13 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 2. Arquitetura logica progressiva.
 3. Roteiro mestre.
 4. Estrategia de fontes.
-5. Pacote de evidencias ou extracao via RAG.
-6. Documentos-diretriz.
-7. Prompt para ferramenta externa.
-8. Revisao de output.
-9. Diagnostico e correcao.
-10. Consolidacao final.
+5. Curadoria hibrida de evidencias, busca ou extracao via RAG.
+6. Pacote de evidencias validado.
+7. Documentos-diretriz.
+8. Prompt para ferramenta externa.
+9. Revisao de output.
+10. Diagnostico e correcao.
+11. Consolidacao final.
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
@@ -70,10 +72,11 @@ Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os ar
 2. Construa a progressao didatica: conceitualizar, contextualizar, problematizar, relacionar elementos, apresentar o metodo/tecnica/habilidade e consolidar.
 3. Organize o roteiro mestre: grandes topicos, topicos especificos, dependencias logicas, exemplos, transicoes e lacunas.
 4. Defina a estrategia de fontes: fontes proprias/RAG, busca com Perplexity, busca biomedica com Open Evidence, NotebookLM com fontes fechadas, ou combinacao.
-5. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
-6. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
-7. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
-8. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
+5. Acione a curadoria hibrida de evidencias: gerar perguntas de pesquisa, prompts externos, receber outputs, auditar, corrigir e consolidar o pacote de evidencias.
+6. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
+7. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
+8. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
+9. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
 
 ## Referencias
 
@@ -81,6 +84,7 @@ Carregue apenas as referencias necessarias:
 
 - Para detalhar etapas e arquitetura da aula, leia `references/fluxo-operacional.md`.
 - Para decidir ferramenta, extensoes do VS Code ou fluxo com Codex/Perplexity/NotebookLM/Gemini/Open Evidence, leia `references/ferramentas-e-vscode.md`.
+- Para pesquisar, revisar, corrigir e organizar fontes/evidencias em fluxo hibrido, leia `references/curadoria-de-evidencias.md`.
 - Para criar prompts e documentos-diretriz, leia `references/prompts-e-diretrizes.md`.
 - Para materiais HTML, mobile-first ou interativos, leia `references/html-didatico.md`.
 - Para revisores internos e uso de subagentes/papeis, leia `references/agentes-revisores.md`.
@@ -106,6 +110,7 @@ Ao orientar o usuario, entregue sempre um proximo passo acionavel:
 - uma estrutura de aula;
 - um roteiro mestre;
 - uma estrategia de fontes;
+- um pacote de curadoria de evidencias;
 - um documento-diretriz;
 - um prompt para ferramenta externa;
 - uma avaliacao do output;

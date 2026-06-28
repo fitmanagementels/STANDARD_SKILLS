@@ -60,6 +60,7 @@ projetos-didaticos/
     │   ├── diretriz-slides.md
     │   └── diretriz-ebook-mobile.md
     ├── 05-prompts/
+    │   ├── pesquisa-hibrida.md
     │   ├── perplexity.md
     │   ├── open-evidence.md
     │   ├── notebooklm-slides.md
@@ -80,9 +81,9 @@ Atualize ou proponha atualizar arquivos assim:
 - Briefing concluido -> `00-briefing.md`.
 - Arquitetura logica definida -> `01-arquitetura-logica.md`.
 - Roteiro aprovado -> `02-roteiro-mestre.md`.
-- Busca, RAG ou evidencias -> `03-fontes-e-evidencias.md`.
+- Busca, RAG ou evidencias consolidadas -> `03-fontes-e-evidencias.md`.
 - Diretrizes -> `04-diretrizes/*.md`.
-- Prompts para ferramentas externas -> `05-prompts/*.md`.
+- Prompts para pesquisa e ferramentas externas -> `05-prompts/*.md`.
 - Outputs recebidos de outras IAs -> `06-outputs-externos/*.md`.
 - Revisoes e diagnosticos -> `07-revisoes/*.md`.
 - Versoes finais -> `08-produtos-finais/`.
@@ -196,9 +197,17 @@ Ao final de cada checkpoint, indique:
 ```markdown
 # Fontes e Evidencias
 
+## Status
+
+## Perguntas investigadas
+
+## Outputs usados
+
 ## Fontes proprias
 
 ## Buscas externas
+
+## Conceitos essenciais
 
 ## Afirmacoes seguras
 
@@ -206,9 +215,15 @@ Ao final de cada checkpoint, indique:
 
 ## Controversias
 
+## Exemplos didaticos aproveitaveis
+
+## Como sustenta a arquitetura da aula
+
 ## Referencias
 
 ## Lacunas
+
+## Itens descartados e motivo
 ```
 
 ### Revisoes

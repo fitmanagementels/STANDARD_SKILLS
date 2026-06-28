@@ -88,6 +88,39 @@ Priorize fontes confiaveis e traga links/referencias. Separe fatos consolidados,
 
 Quando o usuario quer baixa digitacao, use uma versao preenchida com o briefing inferido e peca confirmacao apenas dos pontos que mudariam a busca.
 
+## Prompt para rodada hibrida de evidencias
+
+Use quando a prioridade for montar o pacote de fontes antes de criar roteiro, slides ou ebook.
+
+```text
+Estou construindo uma aula/material didatico.
+
+Contexto:
+- Tema: [TEMA]
+- Publico: [PUBLICO]
+- Objetivo: [OBJETIVO]
+- Tom/recorte: [TOM/RECORTE]
+
+Quero uma rodada de pesquisa para sustentar a construcao do material, nao quero ainda a aula final.
+
+Responda em formato organizado:
+1. perguntas de pesquisa que voce conseguiu responder;
+2. conceitos essenciais;
+3. afirmacoes seguras, com fontes ou justificativa;
+4. afirmacoes que exigem cautela;
+5. controversias, limites ou pontos mal definidos;
+6. exemplos didaticos aproveitaveis;
+7. fontes/referencias/links prioritarios;
+8. lacunas que exigem nova busca;
+9. termos de busca recomendados para uma proxima rodada.
+
+Regras:
+- Nao invente fontes.
+- Separe evidencia de interpretacao.
+- Nao transforme isso em roteiro, slide ou apostila.
+- Escreva pensando que o resultado sera auditado antes de entrar no material final.
+```
+
 ## Prompt para Open Evidence
 
 Use para saude, medicina, fisiologia, exercicio, risco ou recomendacao.
