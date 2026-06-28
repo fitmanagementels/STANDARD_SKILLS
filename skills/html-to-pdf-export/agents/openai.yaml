@@ -1,0 +1,6 @@
+interface:
+  display_name: "HTML to PDF Export"
+  short_description: "Prepare HTML for beautiful PDF export"
+  default_prompt: "Use $html-to-pdf-export to prepare this HTML for a clean saved-as-PDF version."
+policy:
+  allow_implicit_invocation: true

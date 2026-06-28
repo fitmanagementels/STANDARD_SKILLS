@@ -36,7 +36,7 @@ https://github.com/obra/superpowers
 
 A origem exata e a licença estão registradas em [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
-O acervo também contém skills pessoais voltadas a produção HTML, Apps Script, dashboards, UI/UX, design visual, conteúdo didático interativo e gestão da própria base.
+O acervo também contém skills pessoais voltadas a produção HTML, Apps Script, dashboards, UI/UX, design visual, conteúdo didático interativo, exportação HTML para PDF e gestão da própria base.
 
 ## Instalar em uma máquina
 

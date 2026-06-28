@@ -112,9 +112,10 @@ Depois, o acervo passou a incluir skills específicas para ampliar a produção 
 - `html-ui-ux-reviewer`
 - `visual-design-polish`
 - `interactive-learning-html`
+- `html-to-pdf-export`
 - `orquestrar-material-didatico`
 
-Essas skills foram pensadas para reduzir limitações de produção, melhorar UI/UX, enriquecer dashboards, estruturar apps com Google Sheets/App Script e criar conteúdos didáticos interativos.
+Essas skills foram pensadas para reduzir limitações de produção, melhorar UI/UX, enriquecer dashboards, estruturar apps com Google Sheets/App Script, criar conteúdos didáticos interativos e exportar HTMLs bonitos para PDF.
 
 Também foi importado o pacote Superpowers, do repositório:
 
