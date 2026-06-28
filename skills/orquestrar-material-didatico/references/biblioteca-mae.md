@@ -113,6 +113,8 @@ Conteudos recomendados:
 
 Use como base para gerar prompts especificos da aula em `aula-[tema]/05-prompts/`.
 
+Para `open-evidence.md`, use como conteudo minimo: principios de prompt engineering para OpenEvidence, politica de Dotflows e os fluxos `.COLETAR_BASE`, `.COLETAR_EVIDENCIA`, `.COMPARAR_CONCEITOS`, `.MAPEAR_LACUNAS` e `.RESUMIR_PARA_FONTE`. Se o arquivo ainda nao existir na pasta-mae, a skill pode propor copiar/adaptar o template em `assets/biblioteca-mae/_prompts-padrao/open-evidence.md`.
+
 ### `_fontes-recorrentes/`
 
 Fontes que aparecem em muitas aulas.

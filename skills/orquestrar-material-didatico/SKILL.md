@@ -1,6 +1,6 @@
 ---
 name: orquestrar-material-didatico
-description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, correcting, versioning, or protecting against content regression in lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, shared didactic libraries/templates/prompts, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
+description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, correcting, versioning, or protecting against content regression in lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, OpenEvidence Dotflows, shared didactic libraries/templates/prompts, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
 ---
 
 # Orquestrar Material Didatico
@@ -90,6 +90,7 @@ Carregue apenas as referencias necessarias:
 - Para detalhar etapas e arquitetura da aula, leia `references/fluxo-operacional.md`.
 - Para decidir ferramenta, extensoes do VS Code ou fluxo com Codex/Perplexity/NotebookLM/Gemini/Open Evidence, leia `references/ferramentas-e-vscode.md`.
 - Para pesquisar, revisar, corrigir e organizar fontes/evidencias em fluxo hibrido, leia `references/curadoria-de-evidencias.md`.
+- Para criar ou adaptar Dotflows do OpenEvidence para coleta teorica, evidencias, comparacoes, lacunas e fontes para NotebookLM/Codex, leia `references/open-evidence-dotflows.md`.
 - Para criar prompts e documentos-diretriz, leia `references/prompts-e-diretrizes.md`.
 - Para materiais HTML, mobile-first ou interativos, leia `references/html-didatico.md`.
 - Para revisores internos e uso de subagentes/papeis, leia `references/agentes-revisores.md`.

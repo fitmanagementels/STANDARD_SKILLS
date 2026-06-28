@@ -38,7 +38,7 @@ Nao avance para roteiro, slides ou ebook ate existir um pacote minimo validado d
 ## Quando usar cada ferramenta
 
 - Perplexity Pro: mapeamento amplo, termos de busca, autores, revisoes, diretrizes, debates e fontes iniciais.
-- Open Evidence: saude, fisiologia, exercicio, risco, intervencao, recomendacao ou pratica baseada em evidencia.
+- Open Evidence: saude, fisiologia, exercicio, risco, intervencao, recomendacao ou pratica baseada em evidencia. Quando houver uso recorrente, preferir Dotflows estruturados para coleta, evidencia, comparacao, lacunas e consolidacao de fonte.
 - RAG proprio: livros, artigos, PDFs ou notas que o usuario ja tem e quer usar como base fechada.
 - NotebookLM: sintese a partir de fontes fechadas e documentos-diretriz ja organizados.
 - Gemini/chat: comparacao de versoes, reescrita, multimodal, alternativa de explicacao ou segunda opiniao.
@@ -68,6 +68,8 @@ Salvar output bruto em:
 Depois que voltar:
 [como sera auditado e qual arquivo pode ser atualizado]
 ```
+
+Para Open Evidence, se a pasta-mae tiver `_prompts-padrao/open-evidence.md`, use esse arquivo como biblioteca operacional de Dotflows. Se nao existir, use o template em `assets/biblioteca-mae/_prompts-padrao/open-evidence.md` desta skill como base para propor a criacao, sempre com autorizacao quando for pasta compartilhada.
 
 ## Auditoria do output externo
 
