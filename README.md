@@ -10,8 +10,10 @@ O catálogo inclui:
 
 - Busca por nome, função, aplicação e exemplo.
 - Filtros por categoria e tipo de skill.
+- Atalhos por objetivo para sugerir combinações de skills.
 - Cards resumidos com funções principais.
-- Painel de detalhes com aplicação prática, resumo completo e prompt de invocação.
+- Painel de detalhes com abas, aplicação prática, resumo completo e prompt de invocação.
+- Botão para copiar prompt e atalhos de favoritas/recentes no navegador.
 - Fluxos recomendados para combinar skills em trabalhos reais.
 - Aba dedicada ao `CONTEXTO_DO_PROJETO.md`, apresentada como histórico organizado do projeto.
 

@@ -184,6 +184,71 @@
       flex-wrap: wrap;
     }
 
+    .objective-panel,
+    .saved-panel {
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: .95rem;
+      margin: 0;
+    }
+
+    .section-title span {
+      color: var(--soft);
+      font-size: .82rem;
+    }
+
+    .objective-grid,
+    .recent-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 8px;
+    }
+
+    .objective-card,
+    .recent-card {
+      min-height: 76px;
+      text-align: left;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(30, 35, 40, .72);
+      color: var(--text);
+      padding: 12px;
+      transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .objective-card:hover,
+    .recent-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(79, 209, 197, .5);
+      background: rgba(36, 42, 49, .94);
+    }
+
+    .objective-card strong,
+    .recent-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .92rem;
+    }
+
+    .objective-card span,
+    .recent-card span {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      line-height: 1.35;
+    }
+
     .content-grid {
       display: grid;
       grid-template-columns: minmax(320px, 1fr) minmax(320px, 400px);
@@ -349,6 +414,33 @@
       overflow: auto;
     }
 
+    .detail-header {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detail-actions,
+    .detail-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .detail-tab {
+      min-height: 34px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: #101214;
+      color: var(--muted);
+      padding: 0 10px;
+    }
+
+    .detail-tab.active {
+      color: var(--text);
+      border-color: rgba(79, 209, 197, .58);
+      background: #26302f;
+    }
+
     .detail-section {
       border-top: 1px solid var(--line);
       margin-top: 16px;
@@ -364,6 +456,10 @@
       padding: 12px;
       line-height: 1.5;
       margin-top: 10px;
+    }
+
+    .detail-close {
+      display: none;
     }
 
     .workflow-panel {
@@ -516,6 +612,31 @@
       .card-actions {
         grid-template-columns: 1fr;
       }
+
+      .objective-grid,
+      .recent-list {
+        grid-template-columns: 1fr;
+      }
+
+      .detail {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        top: auto;
+        max-height: 78vh;
+        z-index: 20;
+        transform: translateY(calc(100% + 20px));
+        transition: transform .22s ease;
+      }
+
+      .detail.open {
+        transform: translateY(0);
+      }
+
+      .detail-close {
+        display: inline-flex;
+      }
     }
   </style>
 </head>
@@ -542,11 +663,27 @@
 
     <main>
       <section class="view active" id="catalogView" aria-label="Catálogo interativo de skills">
+        <section class="panel objective-panel" aria-label="Atalhos por objetivo">
+          <div class="section-title">
+            <h2>O que você quer fazer?</h2>
+            <span>Escolha um objetivo para sugerir skills</span>
+          </div>
+          <div class="objective-grid" id="objectiveShortcuts"></div>
+        </section>
+
         <div class="panel toolbar">
           <input class="search" id="searchInput" type="search" placeholder="Buscar por nome, função, aplicação ou exemplo..." aria-label="Buscar skills">
           <button class="ghost-button" type="button" id="toggleFilters" aria-expanded="false" aria-controls="filterPanel">Filtros</button>
           <button class="ghost-button" type="button" id="resetFilters">Limpar</button>
         </div>
+
+        <section class="panel saved-panel" aria-label="Skills recentes e favoritas">
+          <div class="section-title">
+            <h2>Favoritas e recentes</h2>
+            <span>Atalhos salvos neste navegador</span>
+          </div>
+          <div class="recent-list" id="recentSkills"></div>
+        </section>
 
         <div class="panel filter-panel" id="filterPanel" hidden>
           <div class="filter-group">
@@ -949,14 +1086,78 @@
       }
     ];
 
+    const objectives = [
+      {
+        title: "Criar HTML bonito",
+        text: "Fluxo de UX, design visual e validação.",
+        skills: ["html-ui-ux-reviewer", "visual-design-polish", "verification-before-completion"]
+      },
+      {
+        title: "Transformar HTML em PDF",
+        text: "Preparar uma versão limpa para Salvar como PDF.",
+        skills: ["html-to-pdf-export", "visual-design-polish", "html-ui-ux-reviewer"]
+      },
+      {
+        title: "Criar dashboard",
+        text: "Planilha, métricas e narrativa de dados.",
+        skills: ["google-sheets-dashboard", "data-storytelling-dashboard", "visual-design-polish"]
+      },
+      {
+        title: "Criar material didático",
+        text: "Roteiro, interação e revisão da experiência.",
+        skills: ["orquestrar-material-didatico", "interactive-learning-html", "html-ui-ux-reviewer"]
+      },
+      {
+        title: "Criar nova skill",
+        text: "Autoria, validação e publicação no acervo.",
+        skills: ["writing-skills", "sync-codex-skills", "verification-before-completion"]
+      },
+      {
+        title: "Revisar antes de finalizar",
+        text: "Testes, revisão e evidência de conclusão.",
+        skills: ["requesting-code-review", "verification-before-completion", "test-driven-development"]
+      }
+    ];
+
+    const aliases = {
+      "html-to-pdf-export": ["pdf", "imprimir", "salvar como pdf", "apostila", "whatsapp", "celular", "print"],
+      "visual-design-polish": ["bonito", "beleza", "design", "css", "polimento", "visual", "paleta"],
+      "html-ui-ux-reviewer": ["ux", "ui", "usabilidade", "fluxo", "interface", "mobile", "formulario"],
+      "google-sheets-dashboard": ["planilha", "sheets", "grafico", "dashboard", "kpi", "indicador"],
+      "data-storytelling-dashboard": ["dados", "analise", "insight", "narrativa", "metrica", "tendencia"],
+      "interactive-learning-html": ["aula", "quiz", "didatico", "flashcards", "atividade", "aprendizagem"],
+      "orquestrar-material-didatico": ["aula", "slides", "apostila", "ebook", "roteiro", "material didatico"],
+      "html-pwa-appscript": ["pwa", "appscript", "apps script", "google sheets", "app", "rotina"],
+      "writing-skills": ["criar skill", "nova skill", "autor", "skill"],
+      "sync-codex-skills": ["github", "sincronizar", "publicar", "outra maquina", "base universal"],
+      "verification-before-completion": ["verificar", "finalizar", "pronto", "validacao", "passou"],
+      "test-driven-development": ["teste", "tdd", "bugfix", "regressao"],
+      "requesting-code-review": ["review", "revisao", "qualidade"],
+      "systematic-debugging": ["bug", "erro", "falha", "debug"],
+      "brainstorming": ["planejar", "ideia", "escopo", "desenho"],
+      "writing-plans": ["plano", "implementacao", "tarefas"]
+    };
+
+    const detailTabs = [
+      { id: "summary", label: "Resumo" },
+      { id: "usage", label: "Quando usar" },
+      { id: "prompt", label: "Prompt" },
+      { id: "related", label: "Combinações" }
+    ];
+
     const state = {
       category: "Todas",
       type: "Todos",
       query: "",
       selected: null,
-      context: contextSections[0].id
+      context: contextSections[0].id,
+      activeDetailTab: "summary",
+      favorites: readStoredList("skillCatalogFavorites"),
+      recents: readStoredList("skillCatalogRecents")
     };
 
+    const objectiveShortcuts = document.getElementById("objectiveShortcuts");
+    const recentSkills = document.getElementById("recentSkills");
     const categoryFilters = document.getElementById("categoryFilters");
     const typeFilters = document.getElementById("typeFilters");
     const skillGrid = document.getElementById("skillGrid");
@@ -968,8 +1169,42 @@
     const contextTimeline = document.getElementById("contextTimeline");
     const contextIndex = document.getElementById("contextIndex");
 
+    function readStoredList(key) {
+      try {
+        return JSON.parse(localStorage.getItem(key) || "[]");
+      } catch (_error) {
+        return [];
+      }
+    }
+
+    function writeStoredList(key, value) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
     function unique(values) {
       return [...new Set(values)];
+    }
+
+    function findSkill(name) {
+      return skills.find((skill) => skill.name === name);
+    }
+
+    function applySkillSet(skillNames) {
+      state.category = "Todas";
+      state.type = "Todos";
+      state.query = skillNames.join(" ");
+      state.selected = skillNames[0] || null;
+      state.activeDetailTab = "summary";
+      if (state.selected) {
+        state.recents = [state.selected, ...state.recents.filter((item) => item !== state.selected)].slice(0, 8);
+        writeStoredList("skillCatalogRecents", state.recents);
+      }
+      searchInput.value = state.query;
+      renderFilters();
+      renderSkills();
+      renderDetail("details");
+      renderRecentSkills();
+      skillDetail.classList.add("open");
     }
 
     function matchesSkill(skill) {
@@ -982,7 +1217,8 @@
         skill.prompt,
         skill.functions.join(" "),
         skill.details.join(" "),
-        skill.related.join(" ")
+        skill.related.join(" "),
+        (aliases[skill.name] || []).join(" ")
       ].join(" ").toLowerCase();
       const matchesQuery = !state.query || haystack.includes(state.query.toLowerCase());
       const matchesCategory = state.category === "Todas" || skill.category === state.category;
@@ -1007,6 +1243,39 @@
       document.getElementById("totalCategories").textContent = unique(skills.map((skill) => skill.category)).length;
       document.getElementById("productionCount").textContent = skills.filter((skill) => skill.type === "Produção").length;
       document.getElementById("processCount").textContent = skills.filter((skill) => skill.type === "Processo" || skill.type === "Validação").length;
+    }
+
+    function renderObjectives() {
+      objectiveShortcuts.innerHTML = "";
+      objectives.forEach((objective) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "objective-card";
+        button.innerHTML = `<strong>${objective.title}</strong><span>${objective.text}</span>`;
+        button.addEventListener("click", () => applySkillSet(objective.skills));
+        objectiveShortcuts.appendChild(button);
+      });
+    }
+
+    function renderRecentSkills() {
+      const names = unique([...state.favorites, ...state.recents]).filter(findSkill);
+      const panel = recentSkills.closest(".saved-panel");
+      if (panel) panel.hidden = !names.length;
+      recentSkills.innerHTML = "";
+
+      if (!names.length) {
+        return;
+      }
+
+      names.slice(0, 6).forEach((name) => {
+        const skill = findSkill(name);
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "recent-card";
+        button.innerHTML = `<strong>${state.favorites.includes(name) ? "★ " : ""}${skill.name}</strong><span>${skill.category}</span>`;
+        button.addEventListener("click", () => selectSkill(skill.name, "details"));
+        recentSkills.appendChild(button);
+      });
     }
 
     function renderSkills() {
@@ -1053,17 +1322,114 @@
 
     function selectSkill(name, mode = "details") {
       state.selected = name;
+      state.activeDetailTab = mode === "prompt" ? "prompt" : mode === "example" ? "usage" : "summary";
+      state.recents = [name, ...state.recents.filter((item) => item !== name)].slice(0, 8);
+      writeStoredList("skillCatalogRecents", state.recents);
       renderSkills();
       renderDetail(mode);
+      renderRecentSkills();
+      skillDetail.classList.add("open");
       skillDetail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    function renderDetailTabs() {
+      return `
+        <div class="detail-tabs" id="detailTabs" role="tablist" aria-label="Seções da skill">
+          ${detailTabs.map((tab) => `
+            <button class="detail-tab ${state.activeDetailTab === tab.id ? "active" : ""}" type="button" data-detail-tab="${tab.id}" role="tab">${tab.label}</button>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderDetailContent(skill) {
+      if (state.activeDetailTab === "usage") {
+        return `
+          <div class="detail-section">
+            <h2>Aplicação prática</h2>
+            <div class="example-box">${skill.practical}</div>
+          </div>
+          <div class="detail-section">
+            <h2>Informações completas resumidas</h2>
+            <ul class="detail-list">
+              ${skill.details.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+          </div>
+        `;
+      }
+
+      if (state.activeDetailTab === "prompt") {
+        return `
+          <div class="detail-section">
+            <h2>Como invocar</h2>
+            <div class="prompt-box">${skill.prompt}</div>
+            <div class="detail-actions">
+              <button class="primary-button" type="button" data-copy-prompt="${skill.name}">Copiar prompt</button>
+            </div>
+          </div>
+        `;
+      }
+
+      if (state.activeDetailTab === "related") {
+        const sequence = [skill.name, ...skill.related].filter((name, index, list) => list.indexOf(name) === index);
+        return `
+          <div class="detail-section">
+            <h2>Sequência sugerida</h2>
+            <ul class="detail-list">
+              ${sequence.map((item, index) => `<li>${index + 1}. ${item}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="detail-section">
+            <h2>Combina bem com</h2>
+            <div class="meta-line">
+              ${skill.related.map((item) => `<button class="chip" type="button" data-related="${item}">${item}</button>`).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="detail-section">
+          <h2>Funções resumidas</h2>
+          <ul class="detail-list">
+            ${skill.functions.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </div>
+      `;
+    }
+
+    function copyPrompt(name) {
+      const skill = findSkill(name);
+      if (!skill) return;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(skill.prompt);
+      }
+      const button = skillDetail.querySelector(`[data-copy-prompt="${name}"]`);
+      if (button) button.textContent = "Copiado";
+    }
+
+    function toggleFavorite(name) {
+      if (state.favorites.includes(name)) {
+        state.favorites = state.favorites.filter((item) => item !== name);
+      } else {
+        state.favorites = [name, ...state.favorites];
+      }
+      writeStoredList("skillCatalogFavorites", state.favorites);
+      renderDetail("details");
+      renderRecentSkills();
     }
 
     function renderDetail(mode = "details") {
       const skill = skills.find((item) => item.name === state.selected);
       if (!skill) {
         skillDetail.innerHTML = `
-          <div class="meta-line">
-            <span class="badge">Exploração progressiva</span>
+          <div class="detail-header">
+            <div class="meta-line">
+              <span class="badge">Exploração progressiva</span>
+            </div>
+            <div class="detail-actions">
+              <button class="secondary-button detail-close" type="button" id="closeDetail">Fechar</button>
+            </div>
           </div>
           <h2>Abra uma skill para ver detalhes</h2>
           <p>Os cards mostram apenas o essencial. Ao abrir uma skill, este painel exibe funções, aplicação prática, prompt de invocação e combinações úteis.</p>
@@ -1076,56 +1442,56 @@
             </ul>
           </div>
         `;
+        const close = document.getElementById("closeDetail");
+        if (close) close.addEventListener("click", () => skillDetail.classList.remove("open"));
         return;
       }
 
+      const isFavorite = state.favorites.includes(skill.name);
       skillDetail.innerHTML = `
-        <div class="meta-line">
-          <span class="badge ${skill.accent}">${skill.type}</span>
-          <span class="badge">${skill.category}</span>
-          <span class="badge">${skill.level}</span>
+        <div class="detail-header">
+          <div class="meta-line">
+            <span class="badge ${skill.accent}">${skill.type}</span>
+            <span class="badge">${skill.category}</span>
+            <span class="badge">${skill.level}</span>
+          </div>
+          <div class="detail-actions">
+            <button class="secondary-button" type="button" data-favorite="${skill.name}">${isFavorite ? "Remover favorito" : "Favoritar"}</button>
+            <button class="secondary-button detail-close" type="button" id="closeDetail">Fechar</button>
+          </div>
         </div>
         <h2>${skill.name}</h2>
         <p>${skill.summary}</p>
-
-        <div class="detail-section">
-          <h2>Funções resumidas</h2>
-          <ul class="detail-list">
-            ${skill.functions.map((item) => `<li>${item}</li>`).join("")}
-          </ul>
-        </div>
-
-        <div class="detail-section">
-          <h2>Aplicação prática</h2>
-          <div class="example-box">${skill.practical}</div>
-        </div>
-
-        <div class="detail-section">
-          <h2>Informações completas resumidas</h2>
-          <ul class="detail-list">
-            ${skill.details.map((item) => `<li>${item}</li>`).join("")}
-          </ul>
-        </div>
-
-        <div class="detail-section">
-          <h2>Como invocar</h2>
-          <div class="prompt-box">${skill.prompt}</div>
-        </div>
-
-        <div class="detail-section">
-          <h2>Combina bem com</h2>
-          <div class="meta-line">
-            ${skill.related.map((item) => `<button class="chip" type="button" data-related="${item}">${item}</button>`).join("")}
-          </div>
-        </div>
+        ${renderDetailTabs()}
+        ${renderDetailContent(skill)}
       `;
 
       if (mode === "example") {
-        skillDetail.querySelector(".example-box").style.borderColor = "rgba(79, 209, 197, .75)";
+        const box = skillDetail.querySelector(".example-box");
+        if (box) box.style.borderColor = "rgba(79, 209, 197, .75)";
       }
       if (mode === "prompt") {
-        skillDetail.querySelector(".prompt-box").style.borderColor = "rgba(244, 199, 111, .78)";
+        const box = skillDetail.querySelector(".prompt-box");
+        if (box) box.style.borderColor = "rgba(244, 199, 111, .78)";
       }
+
+      skillDetail.querySelectorAll("[data-detail-tab]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.activeDetailTab = button.dataset.detailTab;
+          renderDetail("details");
+        });
+      });
+
+      skillDetail.querySelectorAll("[data-copy-prompt]").forEach((button) => {
+        button.addEventListener("click", () => copyPrompt(button.dataset.copyPrompt));
+      });
+
+      skillDetail.querySelectorAll("[data-favorite]").forEach((button) => {
+        button.addEventListener("click", () => toggleFavorite(button.dataset.favorite));
+      });
+
+      const close = document.getElementById("closeDetail");
+      if (close) close.addEventListener("click", () => skillDetail.classList.remove("open"));
 
       skillDetail.querySelectorAll("[data-related]").forEach((button) => {
         button.addEventListener("click", () => {
@@ -1146,14 +1512,7 @@
         button.type = "button";
         button.className = "workflow-card";
         button.innerHTML = `<strong>${workflow.title}</strong><span>${workflow.text}</span>`;
-        button.addEventListener("click", () => {
-          state.query = workflow.skills.join(" ");
-          state.category = "Todas";
-          state.type = "Todos";
-          searchInput.value = state.query;
-          renderFilters();
-          renderSkills();
-        });
+        button.addEventListener("click", () => applySkillSet(workflow.skills));
         workflowList.appendChild(button);
       });
     }
@@ -1230,6 +1589,8 @@
     });
 
     renderStats();
+    renderObjectives();
+    renderRecentSkills();
     renderFilters();
     renderWorkflows();
     renderSkills();

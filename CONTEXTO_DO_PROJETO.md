@@ -75,10 +75,13 @@ Ele foi criado para não ser uma apresentação estática, mas um app com:
 
 - Aba principal de catálogo de skills.
 - Aba de contexto do projeto, baseada neste `CONTEXTO_DO_PROJETO.md`.
+- Atalhos por objetivo para sugerir sequências de skills.
 - Busca por nome, descrição, função, aplicação prática e prompt.
+- Busca enriquecida por intenções e sinônimos.
 - Filtros retráteis por categoria e tipo.
 - Cards compactos para leitura rápida.
-- Painel de detalhes aberto sob demanda com informações completas resumidas.
+- Painel de detalhes aberto sob demanda com abas para resumo, uso, prompt e combinações.
+- Copiar prompt, favoritas e recentes salvos no navegador via `localStorage`.
 - Exemplos de uso e prompts de invocação.
 - Fluxos recomendados para combinar skills em cenários reais.
 
