@@ -68,6 +68,7 @@ projetos-didaticos/
     ├── 06-outputs-externos/
     ├── 07-revisoes/
     ├── 08-produtos-finais/
+    ├── 09-versoes/
     └── html/
 ```
 
@@ -87,6 +88,7 @@ Atualize ou proponha atualizar arquivos assim:
 - Outputs recebidos de outras IAs -> `06-outputs-externos/*.md`.
 - Revisoes e diagnosticos -> `07-revisoes/*.md`.
 - Versoes finais -> `08-produtos-finais/`.
+- Versoes intermediarias e comparacoes v1/v2 -> `09-versoes/`.
 - HTML, CSS, JS e assets interativos -> `html/`.
 
 Quando o usuario trouxer novo conteudo no chat, pergunte se deve ser incorporado ao arquivo correspondente. Se a resposta for obvia pelo fluxo, proponha a atualizacao e execute quando estiver autorizado.
@@ -105,6 +107,24 @@ Ao final de cada checkpoint, indique:
 - resumo do que entrara no arquivo;
 - decisao necessaria do usuario;
 - proximo prompt externo ou proxima etapa apos validacao.
+
+## Versionamento e protecao contra perda
+
+Quando um arquivo detalhado receber correcao, nao substitua diretamente. Use versionamento simples:
+
+```text
+09-versoes/roteiro-mestre-v1.0.md
+09-versoes/roteiro-mestre-v2.0-rascunho.md
+09-versoes/comparacao-roteiro-v1-v2.md
+```
+
+Regra pratica:
+
+- v1 detalhada fica preservada;
+- output corrigido entra como rascunho ou output externo;
+- comparacao registra ganhos e perdas;
+- arquivo principal so muda depois de validacao;
+- se v2 ficou mais simples, consolidar versao hibrida ou pedir nova correcao.
 
 ## Conteudo minimo dos arquivos
 

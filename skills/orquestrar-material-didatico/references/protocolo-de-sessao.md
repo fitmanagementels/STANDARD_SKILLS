@@ -151,7 +151,8 @@ Quando o usuario trouxer output de outra ferramenta:
 3. Salve ou proponha salvar em `06-outputs-externos/`.
 4. Revise contra briefing, roteiro e diretrizes.
 5. Gere decisao objetiva.
-6. Proponha a atualizacao dos arquivos de trabalho e aguarde validacao antes de consolidar conteudo substantivo.
+6. Se o output corrige ou substitui uma versao existente, execute controle de regressao de conteudo antes de consolidar.
+7. Proponha a atualizacao dos arquivos de trabalho e aguarde validacao antes de consolidar conteudo substantivo.
 
 Se o output estiver incompleto, peca o minimo necessario: prompt usado, fonte usada ou trecho do output.
 
@@ -190,9 +191,10 @@ Quando precisar corrigir:
 
 1. Diga se o problema esta no briefing, diretriz, prompt, ferramenta ou output.
 2. Corrija a diretriz antes de pedir nova geracao quando a diretriz estiver fraca.
-3. Gere prompt de correcao com alvo claro.
-4. Indique se deve regerar tudo ou apenas uma parte.
-5. Atualize `00-estado-atual.md`.
+3. Gere prompt de correcao com alvo claro e regra explicita para preservar detalhes uteis da versao anterior.
+4. Indique se deve regerar tudo, apenas uma parte, ou montar versao hibrida v1+v2.
+5. Antes de substituir o arquivo principal, compare versao anterior e nova versao.
+6. Atualize `00-estado-atual.md`.
 
 ## Atualizacao do estado
 

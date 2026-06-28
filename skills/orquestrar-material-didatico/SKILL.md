@@ -1,6 +1,6 @@
 ---
 name: orquestrar-material-didatico
-description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, or correcting lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
+description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, correcting, versioning, or protecting against content regression in lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
 ---
 
 # Orquestrar Material Didatico
@@ -25,6 +25,7 @@ ideia/tema
 -> revisao
 -> diagnostico
 -> correcao/refinamento
+-> controle de regressao de conteudo
 -> aula + slides + apostila/ebook mobile + possiveis materiais HTML
 ```
 
@@ -42,7 +43,8 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 8. Prompt para ferramenta externa.
 9. Revisao de output.
 10. Diagnostico e correcao.
-11. Consolidacao final.
+11. Controle de regressao de conteudo entre versoes.
+12. Consolidacao final.
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
@@ -77,6 +79,7 @@ Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os ar
 7. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
 8. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
 9. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
+10. Antes de substituir uma versao detalhada por uma versao corrigida, compare as duas e proteja conteudo util contra perda, simplificacao excessiva ou reducao de densidade.
 
 ## Referencias
 
@@ -89,6 +92,7 @@ Carregue apenas as referencias necessarias:
 - Para materiais HTML, mobile-first ou interativos, leia `references/html-didatico.md`.
 - Para revisores internos e uso de subagentes/papeis, leia `references/agentes-revisores.md`.
 - Para revisar outputs ruins e gerar correcoes, leia `references/validacao-e-correcao.md`.
+- Para comparar versoes e evitar que uma correcao deixe um arquivo detalhado mais pobre, leia `references/controle-regressao-conteudo.md`.
 - Para criar ou continuar uma pasta persistente de projeto didatico, leia `references/projeto-persistente.md`.
 - Para garantir execucao consistente de sessoes, prompts externos e validacoes, leia `references/protocolo-de-sessao.md`.
 
@@ -116,6 +120,7 @@ Ao orientar o usuario, entregue sempre um proximo passo acionavel:
 - uma avaliacao do output;
 - um diagnostico de desalinhamento;
 - um prompt de correcao;
+- um relatorio de regressao de conteudo;
 - uma atualizacao de arquivo persistente;
 - um checkpoint de validacao/auditoria;
 - ou um plano de consolidacao final.

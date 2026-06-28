@@ -133,6 +133,21 @@ Avalia:
 
 Pergunta central: "Qual ajuste tem maior chance de melhorar a proxima versao?"
 
+## Revisor de regressao de conteudo
+
+Objetivo: impedir que uma versao corrigida fique mais rasa que a versao anterior.
+
+Avalia:
+
+- detalhes removidos;
+- exemplos perdidos;
+- transicoes apagadas;
+- reducao de nuance;
+- perda de densidade teorica ou pratica;
+- se v2 deve substituir v1 ou virar versao hibrida.
+
+Pergunta central: "A correcao melhorou o problema sem empobrecer o material?"
+
 ## Formato de revisao por papel
 
 ```text

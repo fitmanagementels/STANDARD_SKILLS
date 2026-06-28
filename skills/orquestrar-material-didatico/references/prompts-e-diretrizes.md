@@ -262,6 +262,31 @@ Evitar:
 - fontes pequenas em mobile.
 ```
 
+## Prompt de correcao sem perda de detalhes
+
+Use quando uma IA precisa corrigir roteiro, diretriz, slide, ebook, HTML ou pacote de evidencias sem empobrecer a versao anterior.
+
+```text
+Vou te enviar uma versao anterior e uma lista de problemas a corrigir.
+
+Tarefa:
+Corrija os problemas apontados usando a versao anterior como base principal.
+
+Regras obrigatorias:
+- Nao resuma a versao anterior.
+- Nao remova exemplos, transicoes, ressalvas, criterios, definicoes ou explicacoes uteis.
+- Preserve ou aumente a densidade util do material.
+- Se algum trecho precisar sair, liste o trecho removido e justifique.
+- Se substituir uma explicacao, entregue uma alternativa de igual ou maior clareza.
+
+Formato de saida:
+1. versao corrigida;
+2. o que foi preservado da versao anterior;
+3. o que foi alterado;
+4. o que foi removido e por que;
+5. pontos que precisam de validacao humana.
+```
+
 ## Prompt de revisao de output
 
 ```text

@@ -29,6 +29,8 @@ Depois da decisao, indique a proxima acao e o arquivo persistente que deve ser a
 
 Nao consolide conteudo didatico novo em briefing final, arquitetura, roteiro, fontes, diretrizes ou produtos sem checkpoint de validacao/auditoria do usuario. A validacao pode ser curta, mas precisa existir quando a atualizacao muda a substancia do projeto.
 
+Quando a nova resposta for uma correcao de uma versao anterior, revise tambem regressao de conteudo: a nova versao nao pode ficar mais pobre, rasa ou menos util apenas porque corrigiu o problema apontado.
+
 ## Checklist geral
 
 - O objetivo da aula esta claro?
@@ -175,6 +177,23 @@ Correcao:
 - revisar cada parte antes de juntar;
 - criar diretriz de consolidacao final.
 
+### Correcao empobreceu a versao anterior
+
+Provaveis causas:
+
+- prompt pediu correcao sem exigir preservacao de detalhes;
+- ferramenta resumiu para resolver o problema mais facil;
+- v2 foi gerada do zero, sem usar v1 como base;
+- nao houve comparacao entre versoes antes da consolidacao.
+
+Correcao:
+
+- preservar v1 como fonte principal;
+- comparar v1 e v2 antes de substituir;
+- reincorporar exemplos, transicoes, criterios e ressalvas uteis;
+- pedir nova versao com regra "corrigir sem reduzir densidade";
+- consolidar uma versao hibrida quando v2 corrigiu algo mas perdeu material bom.
+
 ## Formato de resposta para correcao
 
 ```text
@@ -224,3 +243,26 @@ Preciso da sua validacao:
 ```
 
 Se o usuario aprovar, atualize os arquivos. Se corrigir, incorpore a correcao antes de atualizar. Se nao responder com validacao clara, mantenha como rascunho ou output externo, nao como versao consolidada.
+
+## Controle de regressao de conteudo
+
+Antes de substituir uma versao detalhada por uma versao corrigida, entregue:
+
+```text
+Comparacao:
+- v1 preservava:
+- v2 melhorou:
+- v2 perdeu ou simplificou:
+- itens da v1 que devem voltar:
+
+Decisao recomendada:
+[usar v2 / montar versao hibrida / pedir nova correcao / manter v1]
+
+Arquivo a atualizar:
+[caminho]
+
+Validacao necessaria:
+[aprovado / reincorporar itens / nao substituir]
+```
+
+Se houver perda relevante de detalhe, nao consolidar v2 pura. Monte versao hibrida ou gere prompt de correcao segura.
