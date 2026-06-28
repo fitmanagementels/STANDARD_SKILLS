@@ -44,7 +44,7 @@ A skill deve deixar o usuario livre de digitar conteudo extenso, mas nao livre d
 
 ## Estrutura recomendada
 
-Use uma pasta com nome claro e sem acentos, por exemplo:
+Use uma pasta de aula com nome claro e sem acentos, por exemplo:
 
 ```text
 projetos-didaticos/
@@ -73,6 +73,22 @@ projetos-didaticos/
 ```
 
 Se o usuario preferir outra raiz, use a pasta escolhida. Se nao houver preferencia, sugira `projetos-didaticos/<slug-do-tema>/` dentro do workspace atual.
+
+Quando existir uma biblioteca-mae, mantenha a aula como projeto editavel e as pastas compartilhadas como referencias:
+
+```text
+MATERIAIS_DIDATICOS/
+├── _templates/
+├── _diretrizes-padrao/
+├── _prompts-padrao/
+├── _fontes-recorrentes/
+├── _assets/
+├── _indice-geral/
+├── _arquivo/
+└── aula-[tema]/
+```
+
+Regra: edite `aula-[tema]/` durante o trabalho normal. Leia pastas com prefixo `_` como referencia e proponha alteracao nelas somente quando o usuario quiser mudar um padrao compartilhado.
 
 ## Regra de atualizacao por etapa
 
@@ -306,3 +322,4 @@ Para Gemini/chat:
 - Nao misture fontes teoricas, prompts e revisoes no mesmo arquivo.
 - Ao revisar, cite o arquivo-base usado como criterio.
 - Nao avance para a etapa seguinte antes de validar ou auditar a saida da etapa atual.
+- Nao edite pastas compartilhadas da biblioteca-mae sem autorizacao explicita para mudar padrao global.

@@ -1,6 +1,6 @@
 ---
 name: orquestrar-material-didatico
-description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, correcting, versioning, or protecting against content regression in lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
+description: Orchestrate the creative workflow for educational material production. Use when planning, producing, reviewing, correcting, versioning, or protecting against content regression in lessons, classes, slide presentations, support handouts, mobile-view ebooks, interactive HTML learning materials, source/evidence workflows, shared didactic libraries/templates/prompts, prompt packs for external AI tools such as Perplexity, Open Evidence, NotebookLM, Gemini, or ChatGPT, or validation of didactic products created outside Codex.
 ---
 
 # Orquestrar Material Didatico
@@ -56,6 +56,8 @@ Para projetos persistentes, siga tambem o protocolo de sessao em `references/pro
 
 Quando o usuario estiver criando um material didatico real, trabalhe em uma pasta de projeto persistente por padrao. O objetivo e reduzir dependencia do historico do chat, facilitar uso do contexto em outras IAs e permitir revisar/corrigir etapas sem procurar informacao na conversa.
 
+Quando houver biblioteca-mae com templates, diretrizes, prompts, fontes ou assets compartilhados, trate essas pastas como referencias por padrao. Edite-as somente quando o usuario pedir explicitamente para mudar um padrao compartilhado ou consolidar um aprendizado reutilizavel.
+
 Nao pergunte "posso criar os arquivos base?" quando a intencao de iniciar um projeto real ja estiver clara e a pasta puder ser criada com seguranca no workspace atual. Crie a estrutura padrao automaticamente e informe o que foi criado. Arquivos-base podem conter templates, estado inicial, briefing inferido e lacunas marcadas, mas nao trate conteudo substantivo como aprovado sem validacao do usuario. Pergunte antes apenas quando houver risco de sobrescrever projeto existente, destino fora do workspace permitido, nome ambiguo, ou impacto destrutivo.
 
 Antes de avancar em uma etapa longa em projeto ja existente, verifique:
@@ -94,6 +96,7 @@ Carregue apenas as referencias necessarias:
 - Para revisar outputs ruins e gerar correcoes, leia `references/validacao-e-correcao.md`.
 - Para comparar versoes e evitar que uma correcao deixe um arquivo detalhado mais pobre, leia `references/controle-regressao-conteudo.md`.
 - Para criar ou continuar uma pasta persistente de projeto didatico, leia `references/projeto-persistente.md`.
+- Para usar biblioteca-mae, templates, diretrizes, prompts, fontes recorrentes e assets compartilhados sem editar padroes indevidamente, leia `references/biblioteca-mae.md`.
 - Para garantir execucao consistente de sessoes, prompts externos e validacoes, leia `references/protocolo-de-sessao.md`.
 
 ## Regras de Ferramentas
