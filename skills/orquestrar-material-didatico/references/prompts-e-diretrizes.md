@@ -19,6 +19,8 @@ Se faltar conteudo teorico ou fonte, nao peca primeiro que o usuario escreva ess
 
 Cada prompt deve representar uma rodada verificavel. Evite prompts que tentem pesquisar, criar roteiro, criar slides, criar ebook e revisar tudo de uma vez.
 
+Quando houver muitas fontes brutas, nao gere prompt pedindo ao Codex para criar uma fonte unificada extensa. Gere um prompt para NotebookLM trabalhar sobre o corpus preservado e peca uma sintese rastreavel por fonte.
+
 ## Estrutura base de prompt externo
 
 Todo prompt para ferramenta externa deve vir acompanhado de um bloco operacional:
@@ -161,6 +163,38 @@ Extraia:
 6. referencias internas das fontes usadas.
 
 Nao gere o produto final ainda. Produza um pacote de evidencias organizado por topicos e indique o que cada trecho ajuda a explicar na aula.
+```
+
+## Prompt para NotebookLM com hierarquia de fontes
+
+Use quando Perplexity, Open Evidence, RAG, PDFs ou livros geraram um corpus amplo.
+
+```text
+Estou construindo uma aula com slides e ebook mobile.
+
+Use os arquivos enviados seguindo esta hierarquia:
+1. Briefing, arquitetura logica e roteiro mestre definem objetivo, publico e progressao.
+2. Fontes teoricas brutas sustentam conceitos, exemplos e afirmacoes.
+3. Diretrizes definem linguagem, formato, visual, mobile-first e criterios de qualidade.
+
+Tarefa:
+Leia o corpus e produza uma sintese operacional para eu construir o material sem substituir as fontes originais.
+
+Formato obrigatorio:
+1. conceitos essenciais por bloco da aula;
+2. afirmacoes seguras com nome da fonte de origem;
+3. afirmacoes que exigem cautela;
+4. exemplos didaticos aproveitaveis;
+5. lacunas, conflitos ou pontos fracos do corpus;
+6. sugestao de uso em slides;
+7. sugestao de uso no ebook mobile.
+
+Regras:
+- Nao invente referencias.
+- Nao trate diretrizes como fonte teorica.
+- Preserve nuance e nao transforme tudo em resumo generico.
+- Se uma afirmacao nao estiver bem sustentada, marque como cautela.
+- Nao crie ainda slides nem ebook final.
 ```
 
 ## Diretriz didatica

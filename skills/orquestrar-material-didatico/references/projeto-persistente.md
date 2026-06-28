@@ -56,6 +56,7 @@ projetos-didaticos/
     ├── 03-fontes-e-evidencias.md
     ├── 04-diretrizes/
     │   ├── diretriz-didatica.md
+    │   ├── diretriz-notebooklm.md
     │   ├── diretriz-visual.md
     │   ├── diretriz-slides.md
     │   └── diretriz-ebook-mobile.md
@@ -63,6 +64,7 @@ projetos-didaticos/
     │   ├── pesquisa-hibrida.md
     │   ├── perplexity.md
     │   ├── open-evidence.md
+    │   ├── notebooklm-hierarquia-fontes.md
     │   ├── notebooklm-slides.md
     │   └── notebooklm-ebook.md
     ├── 06-outputs-externos/
@@ -98,7 +100,7 @@ Atualize ou proponha atualizar arquivos assim:
 - Briefing concluido -> `00-briefing.md`.
 - Arquitetura logica definida -> `01-arquitetura-logica.md`.
 - Roteiro aprovado -> `02-roteiro-mestre.md`.
-- Busca, RAG ou evidencias consolidadas -> `03-fontes-e-evidencias.md`.
+- Busca, RAG ou evidencias consolidadas -> outputs brutos em `06-outputs-externos/` e mapa/manifesto em `03-fontes-e-evidencias.md`.
 - Diretrizes -> `04-diretrizes/*.md`.
 - Prompts para pesquisa e ferramentas externas -> `05-prompts/*.md`.
 - Outputs recebidos de outras IAs -> `06-outputs-externos/*.md`.
@@ -233,11 +235,15 @@ Regra pratica:
 ```markdown
 # Fontes e Evidencias
 
+Este arquivo e um mapa curado. Ele nao substitui as fontes brutas preservadas em `06-outputs-externos/`.
+
 ## Status
 
 ## Perguntas investigadas
 
 ## Outputs usados
+
+## Manifesto de fontes
 
 ## Fontes proprias
 
@@ -295,15 +301,16 @@ Ao continuar um projeto persistente:
 
 Para NotebookLM:
 
-- use `00-briefing.md`, `01-arquitetura-logica.md`, `02-roteiro-mestre.md`, `03-fontes-e-evidencias.md` e diretrizes especificas como fontes;
+- use `00-briefing.md`, `01-arquitetura-logica.md`, `02-roteiro-mestre.md`, `03-fontes-e-evidencias.md`, fontes brutas de `06-outputs-externos/` e diretrizes especificas como fontes;
 - separe fontes teoricas de fontes-diretriz;
 - peça que a ferramenta respeite a hierarquia das diretrizes.
+- quando houver corpus amplo, trate NotebookLM como motor de leitura/sintese e Codex como organizador/revisor. Nao substitua as fontes brutas por uma fonte unificada feita no Codex.
 
 Para Perplexity/Open Evidence:
 
 - use briefing e perguntas de pesquisa;
-- salve primeiro a resposta bruta ou resumida em `06-outputs-externos/`;
-- depois de revisao e validacao, consolide achados em `03-fontes-e-evidencias.md`;
+- salve primeiro a resposta bruta em `06-outputs-externos/`;
+- depois de revisao e validacao, consolide apenas mapa, status, cautelas e achados curtos em `03-fontes-e-evidencias.md`;
 - nao copie respostas longas sem curadoria.
 
 Para Gemini/chat:

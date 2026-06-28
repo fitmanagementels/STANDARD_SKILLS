@@ -9,7 +9,7 @@ Use esta referencia quando o projeto precisar construir base teorica, fontes, af
 - `Quando usar cada ferramenta`: escolha entre Perplexity, Open Evidence, RAG, NotebookLM e Gemini.
 - `Saida da rodada de pesquisa`: formato do prompt/acao.
 - `Auditoria do output externo`: matriz de revisao.
-- `Consolidacao em 03-fontes-e-evidencias.md`: estrutura final.
+- `Consolidacao em 03-fontes-e-evidencias.md`: mapa curado, nao substituto do corpus.
 - `Prompts de correcao`: quando a pesquisa vier fraca.
 - `Uso com subagentes`: delegacao opcional quando autorizada.
 
@@ -29,9 +29,10 @@ Execute uma rodada por vez:
 4. Gerar prompt pronto e dizer exatamente o que o usuario deve retornar.
 5. Receber output bruto em `06-outputs-externos/`.
 6. Auditar qualidade, pertinencia, lacunas, exageros e utilidade didatica.
-7. Propor consolidacao em `03-fontes-e-evidencias.md`.
-8. Aguardar validacao/auditoria do usuario antes de consolidar.
-9. Se houver lacuna, gerar prompt de correcao ou segunda rodada, nao inventar preenchimento.
+7. Se o corpus for amplo, preservar fontes brutas e propor manifesto/hierarquia para NotebookLM antes de qualquer sintese longa.
+8. Propor consolidacao curta em `03-fontes-e-evidencias.md` apenas como mapa curado e achados validados.
+9. Aguardar validacao/auditoria do usuario antes de consolidar.
+10. Se houver lacuna, gerar prompt de correcao ou segunda rodada, nao inventar preenchimento.
 
 Nao avance para roteiro, slides ou ebook ate existir um pacote minimo validado de evidencias para sustentar os blocos principais.
 
@@ -40,7 +41,7 @@ Nao avance para roteiro, slides ou ebook ate existir um pacote minimo validado d
 - Perplexity Pro: mapeamento amplo, termos de busca, autores, revisoes, diretrizes, debates e fontes iniciais.
 - Open Evidence: saude, fisiologia, exercicio, risco, intervencao, recomendacao ou pratica baseada em evidencia. Quando houver uso recorrente, preferir Dotflows estruturados para coleta, evidencia, comparacao, lacunas e consolidacao de fonte.
 - RAG proprio: livros, artigos, PDFs ou notas que o usuario ja tem e quer usar como base fechada.
-- NotebookLM: sintese a partir de fontes fechadas e documentos-diretriz ja organizados.
+- NotebookLM: leitura e sintese a partir de fontes fechadas, outputs brutos e documentos-diretriz ja organizados. Use quando o volume for grande demais para o Codex consolidar com seguranca.
 - Gemini/chat: comparacao de versoes, reescrita, multimodal, alternativa de explicacao ou segunda opiniao.
 
 Ferramentas gratuitas externas so entram se resolverem uma lacuna clara que o arsenal pago nao resolve bem.
@@ -66,7 +67,7 @@ Salvar output bruto em:
 06-outputs-externos/[data]-[ferramenta]-[tema].md
 
 Depois que voltar:
-[como sera auditado e qual arquivo pode ser atualizado]
+[como sera auditado, qual arquivo bruto sera preservado e qual mapa pode ser atualizado]
 ```
 
 Para Open Evidence, se a pasta-mae tiver `_prompts-padrao/open-evidence.md`, use esse arquivo como biblioteca operacional de Dotflows. Se nao existir, use o template em `assets/biblioteca-mae/_prompts-padrao/open-evidence.md` desta skill como base para propor a criacao, sempre com autorizacao quando for pasta compartilhada.
@@ -91,12 +92,26 @@ Seguro para usar / Usar com cautela / Precisa confirmar / Descartar
 
 ## Consolidacao em `03-fontes-e-evidencias.md`
 
+`03-fontes-e-evidencias.md` deve ser mapa curado e manifesto de evidencias, nao uma fonte teorica unica que substitui os arquivos brutos.
+
+Quando houver muitas fontes, respostas longas ou corpus amplo:
+
+- preserve os outputs em `06-outputs-externos/`;
+- registre origem, status, prioridade e cautelas;
+- envie fontes brutas + manifesto + diretrizes ao NotebookLM;
+- use Codex para revisar a sintese do NotebookLM;
+- consolide apenas achados curtos e validados.
+
+Para o fluxo completo, leia `references/notebooklm-hierarquia-fontes.md`.
+
 Use este formato para propor consolidacao:
 
 ```markdown
 ## Perguntas investigadas
 
 ## Fontes e outputs usados
+
+## Manifesto de fontes
 
 ## Conceitos essenciais
 
@@ -122,7 +137,9 @@ O que vou consolidar:
 - ...
 
 Nao vou consolidar:
-- ...
+- fontes brutas extensas que devem continuar preservadas em `06-outputs-externos/`;
+- sintese longa ainda nao auditada;
+- afirmacoes sem rastreabilidade.
 
 Arquivo:
 03-fontes-e-evidencias.md

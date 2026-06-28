@@ -19,6 +19,7 @@ ideia/tema
 -> roteiro mestre
 -> estrategia de fontes
 -> curadoria hibrida de evidencias
+-> hierarquia de fontes para NotebookLM quando o corpus for amplo
 -> documentos-diretriz
 -> prompts para ferramentas externas
 -> outputs externos
@@ -38,13 +39,14 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 3. Roteiro mestre.
 4. Estrategia de fontes.
 5. Curadoria hibrida de evidencias, busca ou extracao via RAG.
-6. Pacote de evidencias validado.
-7. Documentos-diretriz.
-8. Prompt para ferramenta externa.
-9. Revisao de output.
-10. Diagnostico e correcao.
-11. Controle de regressao de conteudo entre versoes.
-12. Consolidacao final.
+6. Hierarquia de fontes e manifesto para NotebookLM.
+7. Pacote de evidencias validado.
+8. Documentos-diretriz.
+9. Prompt para ferramenta externa.
+10. Revisao de output.
+11. Diagnostico e correcao.
+12. Controle de regressao de conteudo entre versoes.
+13. Consolidacao final.
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
@@ -77,11 +79,12 @@ Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os ar
 3. Organize o roteiro mestre: grandes topicos, topicos especificos, dependencias logicas, exemplos, transicoes e lacunas.
 4. Defina a estrategia de fontes: fontes proprias/RAG, busca com Perplexity, busca biomedica com Open Evidence, NotebookLM com fontes fechadas, ou combinacao.
 5. Acione a curadoria hibrida de evidencias: gerar perguntas de pesquisa, prompts externos, receber outputs, auditar, corrigir e consolidar o pacote de evidencias.
-6. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
-7. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
-8. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
-9. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
-10. Antes de substituir uma versao detalhada por uma versao corrigida, compare as duas e proteja conteudo util contra perda, simplificacao excessiva ou reducao de densidade.
+6. Quando houver muitos outputs brutos, artigos, livros, PDFs ou respostas longas, preserve o corpus bruto, crie manifesto/hierarquia de fontes e use NotebookLM como motor de leitura/sintese. Nao tente substituir esse corpus por uma fonte unificada feita no Codex.
+7. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
+8. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
+9. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
+10. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
+11. Antes de substituir uma versao detalhada por uma versao corrigida, compare as duas e proteja conteudo util contra perda, simplificacao excessiva ou reducao de densidade.
 
 ## Referencias
 
@@ -90,6 +93,7 @@ Carregue apenas as referencias necessarias:
 - Para detalhar etapas e arquitetura da aula, leia `references/fluxo-operacional.md`.
 - Para decidir ferramenta, extensoes do VS Code ou fluxo com Codex/Perplexity/NotebookLM/Gemini/Open Evidence, leia `references/ferramentas-e-vscode.md`.
 - Para pesquisar, revisar, corrigir e organizar fontes/evidencias em fluxo hibrido, leia `references/curadoria-de-evidencias.md`.
+- Para preservar corpus bruto, organizar manifesto/hierarquia de fontes e usar NotebookLM sem transformar Codex em RAG improvisado, leia `references/notebooklm-hierarquia-fontes.md`.
 - Para criar ou adaptar Dotflows do OpenEvidence para coleta teorica, evidencias, comparacoes, lacunas e fontes para NotebookLM/Codex, leia `references/open-evidence-dotflows.md`.
 - Para criar prompts e documentos-diretriz, leia `references/prompts-e-diretrizes.md`.
 - Para materiais HTML, mobile-first ou interativos, leia `references/html-didatico.md`.
@@ -107,6 +111,8 @@ Priorize ferramentas ja pagas ou disponiveis para o usuario: Codex/GPT Max, Perp
 Use IAs de busca/texto para gerar ou extrair conteudo teorico quando isso reduzir digitacao do usuario. Use Codex para dirigir o processo, transformar outputs em diretrizes, criar prompts, organizar arquivos, validar produtos e corrigir rota.
 
 Quando faltar conteudo teorico, fontes ou base conceitual, nao peca primeiro que o usuario escreva esse conteudo. Gere um prompt pronto para Perplexity Pro, Open Evidence, Gemini, NotebookLM ou RAG, diga onde usar, o que retornar e em qual arquivo o output sera auditado.
+
+Nao transforme um conjunto grande de fontes brutas em uma "fonte unificada" substitutiva. Para corpus amplo, preserve outputs brutos, crie mapa/manifesto e use NotebookLM para leitura e sintese. Codex pode consolidar achados curtos e validados em `03-fontes-e-evidencias.md`, mas nao deve apagar a rastreabilidade nem comprimir a teoria extensa sem auditoria.
 
 Use Codex/VS Code como oficina principal para HTML, prototipos interativos, validacao visual e organizacao de arquivos. Sugira extensoes do VS Code somente quando resolverem uma necessidade concreta.
 

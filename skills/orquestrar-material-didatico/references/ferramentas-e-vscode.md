@@ -39,6 +39,8 @@ Use como diretor do processo e oficina tecnica:
 
 Nao use Codex para exigir que o usuario digite manualmente conteudo teorico extenso. Use Codex para preparar a rodada e depois enviar o trabalho de busca/extracao/sintese para a ferramenta mais adequada.
 
+Tambem nao use Codex como RAG improvisado para comprimir um corpus grande em uma fonte unificada. Para muitas fontes, Codex deve organizar manifesto, hierarquia, prompts e revisoes; NotebookLM ou RAG apropriado faz a leitura/sintese do corpus.
+
 ### Perplexity Pro
 
 Use para busca exploratoria e sintese inicial:
@@ -80,6 +82,8 @@ Use quando houver fontes fechadas:
 Trate documentos-diretriz como fontes do NotebookLM. Isso costuma funcionar melhor do que depender apenas de um prompt longo.
 
 Use NotebookLM como motor principal de producao quando o usuario ja tiver fontes teoricas e fontes-diretriz suficientes. Codex deve preparar os arquivos e prompts, e o usuario deve trazer o output para validacao.
+
+Use NotebookLM tambem como motor de leitura/sintese quando Perplexity, Open Evidence, RAG ou PDFs gerarem muitas fontes brutas. Nessa situacao, preserve os arquivos brutos, suba o manifesto de fontes e peça uma sintese rastreavel. Nao peca ao Codex para criar uma "fonte unificada" extensa antes de o NotebookLM trabalhar sobre o corpus.
 
 ### Gemini Plus/Pro
 
