@@ -21,6 +21,8 @@ Cada prompt deve representar uma rodada verificavel. Evite prompts que tentem pe
 
 Quando houver muitas fontes brutas, nao gere prompt pedindo ao Codex para criar uma fonte unificada extensa. Gere um prompt para NotebookLM trabalhar sobre o corpus preservado e peca uma sintese rastreavel por fonte.
 
+Depois que fontes minimas e roteiro mestre estiverem definidos, entre em modo produtivo. Para slides e ebook, gere primeiro um roteiro de conteudo acionavel, valide uma vez, depois gere o prompt do artefato. Evite revisoes intermediarias em excesso antes de existir output concreto.
+
 ## Estrutura base de prompt externo
 
 Todo prompt para ferramenta externa deve vir acompanhado de um bloco operacional:
@@ -226,6 +228,8 @@ Regras:
 
 ## Roteiro slide a slide
 
+Use para preparar a geracao da apresentacao. O objetivo e ser pratico: cada slide deve ter conteudo suficiente para a ferramenta gerar uma apresentacao boa sem pedir nova fase de planejamento.
+
 ```text
 Crie uma apresentacao sobre [TEMA] para [PUBLICO].
 
@@ -234,16 +238,56 @@ Para cada slide, entregue:
 1. numero do slide;
 2. titulo;
 3. mensagem central;
-4. conteudo essencial;
-5. sugestao visual;
-6. nota do apresentador;
-7. qual fonte/diretriz sustenta o slide.
+4. conteudo essencial em 3 a 5 bullets;
+5. exemplo pratico ou situacao de uso;
+6. sugestao visual objetiva;
+7. nota do apresentador com a explicacao que nao deve poluir o slide;
+8. fonte/base que sustenta o slide;
+9. transicao para o proximo slide.
 
 Regras:
 - Um slide deve defender uma ideia.
 - Evite excesso de texto.
 - Priorize progressao narrativa.
 - Nao adicione topicos fora do roteiro mestre sem justificar.
+- Separe texto visivel do slide e nota do apresentador.
+- Se houver conteudo denso, mova detalhes para a nota ou para o ebook.
+```
+
+## Prompt para gerar slides
+
+Use depois de validar o roteiro slide a slide.
+
+```text
+Gere a apresentacao a partir do roteiro validado.
+
+Contexto:
+- Tema: [TEMA]
+- Publico: [PUBLICO]
+- Objetivo: [OBJETIVO]
+- Tom: [TOM]
+
+Fontes e diretrizes:
+- Use o roteiro mestre e o roteiro slide a slide como estrutura obrigatoria.
+- Use as fontes teoricas apenas para sustentar afirmacoes.
+- Use a diretriz visual para linguagem visual e densidade.
+
+Formato de saida:
+Para cada slide:
+1. numero;
+2. titulo;
+3. texto visivel no slide;
+4. sugestao visual;
+5. nota do apresentador;
+6. fonte/base;
+7. transicao.
+
+Regras:
+- Nao crie novos topicos centrais.
+- Nao transforme slide em apostila.
+- Maximo de uma mensagem central por slide.
+- Se precisar de explicacao longa, coloque na nota do apresentador.
+- Ao final, liste apenas problemas ou lacunas que impedem uso imediato.
 ```
 
 ## Diretriz editorial para ebook mobile
@@ -269,6 +313,66 @@ Regras:
 - Use listas quando melhorarem escaneabilidade.
 - Destaque conceitos, passos e alertas.
 - Mantenha coerencia com slides e roteiro mestre.
+```
+
+## Roteiro de conteudo para ebook mobile
+
+Use depois de ter roteiro de slides ou roteiro mestre validado.
+
+```text
+Transforme o roteiro da aula em estrutura de ebook mobile.
+
+Para cada secao, entregue:
+1. titulo curto;
+2. objetivo da secao;
+3. ideia central;
+4. conteudo essencial em paragrafos curtos;
+5. exemplo pratico;
+6. box de resumo ou alerta;
+7. pergunta de checagem ou reflexao;
+8. relacao com slides correspondentes.
+
+Regras:
+- O ebook complementa os slides, nao copia a apresentacao.
+- Uma tela/trecho deve carregar uma ideia principal.
+- Use subtitulos, boxes e listas quando melhorarem leitura no celular.
+- Preserve precisao sem linguagem excessivamente academica.
+```
+
+## Prompt para gerar ebook mobile
+
+Use depois de validar o roteiro de conteudo do ebook.
+
+```text
+Gere um ebook mobile-first a partir do roteiro validado.
+
+Contexto:
+- Tema: [TEMA]
+- Publico: [PUBLICO]
+- Objetivo: [OBJETIVO]
+- Relacao com slides: [COMPLEMENTAR / MATERIAL DE APOIO / APOSTILA PRINCIPAL]
+
+Use:
+- briefing;
+- roteiro mestre;
+- roteiro de conteudo do ebook;
+- fontes/evidencias validadas;
+- diretriz editorial mobile.
+
+Formato:
+- capitulos curtos;
+- subtitulos frequentes;
+- paragrafos breves;
+- boxes de resumo;
+- exemplos praticos;
+- checklists quando fizer sentido.
+
+Regras:
+- Nao copie os slides.
+- Nao transforme em artigo academico.
+- Nao adicione topicos fora do roteiro sem sinalizar.
+- Se uma afirmacao depender de fonte fraca, marque como cautela.
+- Ao final, liste lacunas que exigem validacao humana.
 ```
 
 ## Diretriz visual

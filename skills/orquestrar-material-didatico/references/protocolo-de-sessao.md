@@ -26,18 +26,21 @@ O usuario quer baixo atrito, pouca digitacao e participacao por validacao. Porta
 
 Nao use perguntas como forma de adiar trabalho operacional. Se o proximo passo padrao for claro, execute a preparacao da etapa. Mas nao use automacao para pular validacao: execute uma etapa, pare, valide, depois siga.
 
+Depois que as fontes minimas estiverem adquiridas, reduza exploracao e siga modo produtivo: roteiro de conteudo dos slides -> prompt de slides -> revisao objetiva -> roteiro de ebook -> prompt de ebook -> revisao objetiva. Nao reprojete o fluxo no meio do caminho sem pedido do usuario ou problema grave.
+
 ## Ciclo validado por etapa
 
 Use este ciclo em todo projeto real:
 
 1. Identificar a etapa atual.
-2. Criar ou atualizar a estrutura persistente minima, se necessario.
-3. Produzir apenas a saida da etapa atual: rascunho, prompt externo, diagnostico ou proposta de atualizacao.
-4. Indicar quais arquivos seriam criados ou atualizados.
-5. Pedir validacao/auditoria do usuario antes de consolidar conteudo substantivo.
-6. Aguardar aprovacao, correcao ou output externo.
-7. Depois da validacao, atualizar os arquivos correspondentes e `00-estado-atual.md`.
-8. So entao propor a proxima etapa.
+2. Identificar arquivos ativos e arquivo canonico da etapa.
+3. Criar ou atualizar a estrutura persistente minima, se necessario.
+4. Produzir apenas a saida da etapa atual: rascunho, prompt externo, diagnostico ou proposta de atualizacao.
+5. Atualizar arquivo existente sempre que possivel; criar novo arquivo apenas quando a funcao for realmente nova.
+6. Pedir validacao/auditoria do usuario antes de consolidar conteudo substantivo.
+7. Aguardar aprovacao, correcao ou output externo.
+8. Depois da validacao, atualizar os arquivos correspondentes e `00-estado-atual.md`.
+9. So entao propor a proxima etapa.
 
 Nao execute todas as fases de planejamento em uma unica resposta. Se for necessario antecipar o caminho completo, apresente-o como mapa resumido, nao como conteudo consolidado.
 
@@ -47,10 +50,11 @@ Quando o usuario comecar um material novo:
 
 1. Crie pasta persistente se o trabalho for real e o destino for seguro.
 2. Defina um slug de pasta a partir do tema.
-3. Crie `00-estado-atual.md` e os arquivos-base padrao.
+3. Crie `00-estado-atual.md`, `00-briefing.md` e apenas os arquivos canonicos necessarios para a etapa atual.
 4. Preencha templates, estado inicial, briefing inferido e lacunas marcadas como `Pendente`, `Assumido` ou `A validar`.
-5. Nao preencha arquitetura, roteiro, fontes, diretrizes e prompts como se estivessem concluidos no primeiro passe.
-6. Termine com o primeiro checkpoint: validacao do briefing ou prompt externo pronto para buscar/extrair conteudo.
+5. Nao crie todos os prompts, diretrizes e revisoes de uma vez.
+6. Nao preencha arquitetura, roteiro, fontes, diretrizes e prompts como se estivessem concluidos no primeiro passe.
+7. Termine com o primeiro checkpoint: validacao do briefing ou prompt externo pronto para buscar/extrair conteudo.
 
 Pergunte antes de criar somente se:
 
@@ -78,9 +82,10 @@ Proxima acao:
 Quando o usuario continuar um projeto existente:
 
 1. Leia `00-estado-atual.md`.
-2. Se faltar contexto, leia `00-briefing.md`, `01-arquitetura-logica.md` e `02-roteiro-mestre.md`.
-3. Resuma em ate 8 linhas: etapa, decisoes, pendencias e proxima acao.
-4. Nao reinicie briefing se ja houver briefing suficiente.
+2. Identifique `Arquivos ativos` e use esses arquivos antes de procurar/criar alternativas.
+3. Se faltar contexto, leia `00-briefing.md`, `01-arquitetura-logica.md` e `02-roteiro-mestre.md`.
+4. Resuma em ate 8 linhas: etapa, decisoes, pendencias e proxima acao.
+5. Nao reinicie briefing se ja houver briefing suficiente.
 
 Formato de retomada:
 
@@ -128,6 +133,8 @@ Quando faltar conteudo teorico, fontes, definicoes, autores, evidencias, exemplo
 
 Se o prompt for grande ou o produto complexo, divida em rodadas. Prefira tres prompts bons e verificaveis a um prompt enorme que a ferramenta pode ignorar.
 
+Para slides e ebook, nao divida em rodadas de revisao antes de existir produto concreto, salvo se a base estiver claramente incompleta. Gere roteiro de conteudo, valide uma vez, gere o prompt do artefato e revise o output.
+
 ## Curadoria hibrida de evidencias
 
 Quando a etapa atual envolver fontes, base teorica, evidencia, definicoes ou exemplos, acione a curadoria hibrida:
@@ -142,6 +149,8 @@ Quando a etapa atual envolver fontes, base teorica, evidencia, definicoes ou exe
 
 Nao peca que o usuario escreva a base teorica. Peca que ele execute a rodada externa e traga o output para revisao.
 
+Quando o pacote minimo de fontes estiver suficiente para sustentar os blocos principais, pare de aprofundar a busca por padrao e avance para roteiro de conteudo. Novas buscas entram apenas para lacunas especificas que bloqueiam slides/ebook.
+
 ## Recebimento de output externo
 
 Quando o usuario trouxer output de outra ferramenta:
@@ -155,6 +164,8 @@ Quando o usuario trouxer output de outra ferramenta:
 7. Proponha a atualizacao dos arquivos de trabalho e aguarde validacao antes de consolidar conteudo substantivo.
 
 Se o output estiver incompleto, peca o minimo necessario: prompt usado, fonte usada ou trecho do output.
+
+Salve revisao em `07-revisoes/` apenas quando for uma revisao formal ou quando o diagnostico precise ser preservado. Para ajustes pequenos, atualize `00-estado-atual.md`, o prompt ativo ou a diretriz canonica.
 
 ## Validacao de produto
 
@@ -185,6 +196,8 @@ Arquivo a atualizar:
 [caminho]
 ```
 
+Para slides e ebook, mantenha validacao objetiva. Por padrao, liste ate 5 problemas prioritarios e entregue uma unica acao: aprovar, ajustar pontualmente, regerar uma parte ou regerar tudo. Evite criar novas rodadas de diagnostico se um prompt de correcao direto resolver.
+
 ## Correcao e nova rodada
 
 Quando precisar corrigir:
@@ -195,6 +208,8 @@ Quando precisar corrigir:
 4. Indique se deve regerar tudo, apenas uma parte, ou montar versao hibrida v1+v2.
 5. Antes de substituir o arquivo principal, compare versao anterior e nova versao.
 6. Atualize `00-estado-atual.md`.
+
+Limite padrao: uma rodada de correcao por output. Se a segunda tentativa continuar ruim, diagnostique se o problema esta no roteiro, ferramenta ou diretriz antes de continuar pedindo novas versoes.
 
 ## Atualizacao do estado
 
@@ -210,6 +225,17 @@ Ao final de etapa relevante, atualize ou proponha atualizar `00-estado-atual.md`
 ## Decisoes ja tomadas
 
 ## Arquivos principais
+
+## Arquivos ativos
+
+- Briefing atual:
+- Arquitetura atual:
+- Roteiro atual:
+- Mapa de fontes:
+- Diretriz de slides:
+- Diretriz de ebook:
+- Prompt em uso:
+- Output aguardado:
 
 ## Ultima ferramenta usada
 

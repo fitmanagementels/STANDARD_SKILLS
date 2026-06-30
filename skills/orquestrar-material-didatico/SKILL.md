@@ -20,12 +20,14 @@ ideia/tema
 -> estrategia de fontes
 -> curadoria hibrida de evidencias
 -> hierarquia de fontes para NotebookLM quando o corpus for amplo
--> documentos-diretriz
--> prompts para ferramentas externas
+-> roteiro de conteudo para slides
+-> prompt de geracao dos slides
+-> revisao objetiva dos slides
+-> roteiro de conteudo para ebook
+-> prompt de geracao do ebook
+-> revisao objetiva do ebook
 -> outputs externos
--> revisao
--> diagnostico
--> correcao/refinamento
+-> correcao/refinamento quando necessario
 -> controle de regressao de conteudo
 -> aula + slides + apostila/ebook mobile + possiveis materiais HTML
 ```
@@ -41,16 +43,21 @@ Antes de produzir qualquer artefato, identifique em qual etapa o usuario esta:
 5. Curadoria hibrida de evidencias, busca ou extracao via RAG.
 6. Hierarquia de fontes e manifesto para NotebookLM.
 7. Pacote de evidencias validado.
-8. Documentos-diretriz.
-9. Prompt para ferramenta externa.
-10. Revisao de output.
-11. Diagnostico e correcao.
-12. Controle de regressao de conteudo entre versoes.
-13. Consolidacao final.
+8. Roteiro de conteudo para slides.
+9. Prompt de geracao dos slides.
+10. Revisao objetiva dos slides.
+11. Roteiro de conteudo para ebook.
+12. Prompt de geracao do ebook.
+13. Revisao objetiva do ebook.
+14. Diagnostico e correcao.
+15. Controle de regressao de conteudo entre versoes.
+16. Consolidacao final.
 
 Se a etapa estiver ambigua, faca no maximo 3 perguntas essenciais. Se houver informacao suficiente, avance com uma proposta concreta.
 
 Execute apenas a etapa atual. Nao complete briefing, arquitetura, roteiro, fontes, diretrizes e prompts em sequencia sem checkpoints. Ao terminar uma etapa ou gerar um prompt externo, pare para validacao, auditoria ou retorno do output antes de consolidar a proxima etapa.
+
+Depois que as fontes/corpus minimo estiverem adquiridos, entre em modo produtivo: siga a trilha aprovada, produza roteiro de conteudo para slides/ebook e gere prompts de artefato sem reinventar o fluxo. Revisoes deixam de ser exploratorias e passam a ser objetivas: por padrao, no maximo uma revisao antes de gerar e uma revisao depois do output. Rodadas extras so quando o usuario pedir ou houver desalinhamento grave de objetivo, publico, fonte ou formato.
 
 Para projetos persistentes, siga tambem o protocolo de sessao em `references/protocolo-de-sessao.md`: iniciar/retomar estado, gerar prompts executaveis, receber outputs, revisar, decidir e atualizar o arquivo de estado.
 
@@ -70,6 +77,8 @@ Antes de avancar em uma etapa longa em projeto ja existente, verifique:
 
 Mantenha briefing, arquitetura, roteiro, fontes, diretrizes, prompts, outputs e revisoes em arquivos Markdown separados. Para estrutura, nomes de arquivos e regras de atualizacao, leia `references/projeto-persistente.md`.
 
+Antes de criar qualquer arquivo novo, verifique se ja existe arquivo canonico para aquela funcao e atualize-o. Crie novo arquivo apenas para output bruto externo, versao que precisa ser preservada, revisao formal necessaria, produto final/intermediario, HTML/assets, ou prompt com funcao realmente diferente.
+
 ## Fluxo Central
 
 Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os arquivos envolvidos e pare para validacao ou retorno externo antes de avancar.
@@ -80,11 +89,13 @@ Cada item abaixo e um checkpoint. Entregue a saida da etapa atual, indique os ar
 4. Defina a estrategia de fontes: fontes proprias/RAG, busca com Perplexity, busca biomedica com Open Evidence, NotebookLM com fontes fechadas, ou combinacao.
 5. Acione a curadoria hibrida de evidencias: gerar perguntas de pesquisa, prompts externos, receber outputs, auditar, corrigir e consolidar o pacote de evidencias.
 6. Quando houver muitos outputs brutos, artigos, livros, PDFs ou respostas longas, preserve o corpus bruto, crie manifesto/hierarquia de fontes e use NotebookLM como motor de leitura/sintese. Nao tente substituir esse corpus por uma fonte unificada feita no Codex.
-7. Crie documentos-diretriz antes de pedir produtos finais: diretriz visual, diretriz editorial, roteiro slide a slide, diretriz de ebook mobile, criterio de profundidade e linguagem.
-8. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
-9. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
-10. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
-11. Antes de substituir uma versao detalhada por uma versao corrigida, compare as duas e proteja conteudo util contra perda, simplificacao excessiva ou reducao de densidade.
+7. Para slides, produza um roteiro de conteudo slide a slide suficientemente acionavel: titulo, mensagem central, conteudo essencial, exemplo, sugestao visual, fonte/base e nota do apresentador. Valide esse roteiro e gere o prompt de slides.
+8. Revise slides de forma objetiva: alinhamento, progressao, excesso de texto, adequacao visual e acao corretiva. Nao abra varias rodadas de revisao antes de existir output concreto.
+9. Para ebook, produza roteiro de secoes mobile-first vinculado ao roteiro de slides: objetivo da secao, ideia central, conteudo, exemplo, box/resumo e relacao com os slides.
+10. Gere prompts de acao para a ferramenta escolhida, com contexto, fontes, formato de saida, restricoes e criterio de avaliacao.
+11. Quando o usuario trouxer um output, revise contra briefing, roteiro, fontes e diretrizes.
+12. Se o produto nao saiu como esperado, diagnostique o desvio e gere um prompt de correcao especifico.
+13. Antes de substituir uma versao detalhada por uma versao corrigida, compare as duas e proteja conteudo util contra perda, simplificacao excessiva ou reducao de densidade.
 
 ## Referencias
 

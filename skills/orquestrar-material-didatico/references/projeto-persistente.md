@@ -34,13 +34,22 @@ Nao force persistencia para perguntas pequenas, brainstorming rapido ou testes s
 
 Separe criacao estrutural de consolidacao de conteudo:
 
-- Criar pasta, subpastas e arquivos-base: automatico quando seguro.
-- Preencher templates, estado inicial e lacunas: automatico quando seguro.
+- Criar pasta, subpastas e arquivos-base da etapa atual: automatico quando seguro.
+- Preencher templates, estado inicial e lacunas da etapa atual: automatico quando seguro.
 - Registrar briefing inferido com marcadores `Assumido` ou `A validar`: automatico.
 - Consolidar arquitetura, roteiro, fontes, diretrizes, prompts finais, revisoes e produtos: somente apos validacao/auditoria do usuario.
 - Sobrescrever arquivo existente: nunca sem mostrar resumo da mudanca e receber autorizacao.
 
 A skill deve deixar o usuario livre de digitar conteudo extenso, mas nao livre da validacao. O fluxo correto e: Codex prepara ou pede a outra IA, usuario valida/audita, Codex consolida nos arquivos.
+
+Antes de criar arquivo novo, aplique esta ordem:
+
+1. Existe arquivo canonico para essa funcao? Atualize esse arquivo.
+2. Existe arquivo de prompt/diretriz da mesma ferramenta e objetivo? Atualize-o.
+3. O conteudo e output bruto, revisao formal, versao preservada, produto final ou HTML? Crie novo arquivo.
+4. Se for apenas microfase, decisao, ajuste de roteiro ou correcao pequena, registre no arquivo canonico e em `00-estado-atual.md`.
+
+Nao crie arquivo novo para cada passo, fase, tentativa, comentario ou decisao. Muitos arquivos parecidos reduzem a clareza do projeto.
 
 ## Estrutura recomendada
 
@@ -74,7 +83,7 @@ projetos-didaticos/
     └── html/
 ```
 
-Se o usuario preferir outra raiz, use a pasta escolhida. Se nao houver preferencia, sugira `projetos-didaticos/<slug-do-tema>/` dentro do workspace atual.
+A estrutura acima e o mapa do projeto, nao uma ordem para criar todos os arquivos no primeiro uso. Crie primeiro o minimo necessario para a etapa atual e adicione arquivos canonicos conforme o fluxo avancar. Se o usuario preferir outra raiz, use a pasta escolhida. Se nao houver preferencia, sugira `projetos-didaticos/<slug-do-tema>/` dentro do workspace atual.
 
 Quando existir uma biblioteca-mae, mantenha a aula como projeto editavel e as pastas compartilhadas como referencias:
 
@@ -112,6 +121,19 @@ Atualize ou proponha atualizar arquivos assim:
 Quando o usuario trouxer novo conteudo no chat, pergunte se deve ser incorporado ao arquivo correspondente. Se a resposta for obvia pelo fluxo, proponha a atualizacao e execute quando estiver autorizado.
 
 Em modo pratico, evite pedir que o usuario preencha arquivos do zero. Preencha versoes iniciais com base no briefing e deixe lacunas marcadas como `Pendente`, `Assumido` ou `A validar`. O usuario deve corrigir o que estiver desalinhado.
+
+Arquivos canonicos devem ser reutilizados:
+
+- briefing atual -> `00-briefing.md`;
+- arquitetura atual -> `01-arquitetura-logica.md`;
+- roteiro mestre e roteiro de conteudo -> `02-roteiro-mestre.md`;
+- mapa de fontes -> `03-fontes-e-evidencias.md`;
+- diretriz de slides -> `04-diretrizes/diretriz-slides.md`;
+- diretriz de ebook -> `04-diretrizes/diretriz-ebook-mobile.md`;
+- prompt ativo de slides -> `05-prompts/notebooklm-slides.md`;
+- prompt ativo de ebook -> `05-prompts/notebooklm-ebook.md`.
+
+Se uma nova informacao melhorar um desses itens, atualize o arquivo canonico. Nao crie `roteiro-ajustado.md`, `roteiro-final.md`, `roteiro-validado.md` ou equivalentes, exceto quando for necessario preservar versao em `09-versoes/`.
 
 Nao trate rascunhos inferidos como aprovados. Use status nos arquivos quando necessario:
 
@@ -158,6 +180,17 @@ Regra pratica:
 ## Decisoes ja tomadas
 
 ## Arquivos principais
+
+## Arquivos ativos
+
+- Briefing atual:
+- Arquitetura atual:
+- Roteiro atual:
+- Mapa de fontes:
+- Diretriz de slides:
+- Diretriz de ebook:
+- Prompt em uso:
+- Output aguardado:
 
 ## Ultima ferramenta usada
 
@@ -227,6 +260,26 @@ Regra pratica:
 - Exemplos:
 - Transicao:
 
+## Roteiro de conteudo para slides
+
+### Slide 1 - [titulo]
+- Mensagem central:
+- Conteudo essencial:
+- Exemplo:
+- Sugestao visual:
+- Fonte/base:
+- Nota do apresentador:
+
+## Roteiro de conteudo para ebook mobile
+
+### Secao 1 - [titulo]
+- Objetivo:
+- Ideia central:
+- Conteudo:
+- Exemplo:
+- Box/resumo:
+- Relacao com slides:
+
 ## Pendencias
 ```
 
@@ -277,6 +330,8 @@ Nomeie revisoes com data ou etapa:
 07-revisoes/revisao-ebook-mobile-v2.md
 ```
 
+Crie arquivo em `07-revisoes/` apenas para revisao formal de output externo ou produto importante. Para pequenos ajustes, registre a decisao em `00-estado-atual.md` e atualize o arquivo canonico correspondente.
+
 Inclua:
 
 - produto revisado;
@@ -291,11 +346,12 @@ Inclua:
 Ao continuar um projeto persistente:
 
 1. Leia `00-estado-atual.md` primeiro, se existir.
-2. Liste ou leia os arquivos principais quando o estado estiver incompleto.
-3. Identifique a etapa atual.
-4. Resuma estado, decisoes e pendencias.
-5. Pergunte apenas o que falta para seguir.
-6. Continue atualizando os arquivos, nao apenas o chat.
+2. Identifique os arquivos ativos antes de criar novos.
+3. Liste ou leia os arquivos principais quando o estado estiver incompleto.
+4. Identifique a etapa atual.
+5. Resuma estado, decisoes e pendencias.
+6. Pergunte apenas o que falta para seguir.
+7. Continue atualizando os arquivos canonicos, nao apenas o chat.
 
 ## Uso com outras IAs
 
@@ -324,6 +380,7 @@ Para Gemini/chat:
 - Prefira Markdown para contexto e diretrizes.
 - Mantenha cada arquivo com uma funcao clara.
 - Atualize `00-estado-atual.md` ao final de cada etapa relevante.
+- Atualize arquivo canonico antes de criar novo arquivo.
 - Registre decisoes, nao apenas conteudo final.
 - Preserve outputs ruins quando eles forem uteis para diagnostico.
 - Nao misture fontes teoricas, prompts e revisoes no mesmo arquivo.

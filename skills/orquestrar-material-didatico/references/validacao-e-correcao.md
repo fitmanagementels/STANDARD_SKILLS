@@ -31,6 +31,10 @@ Nao consolide conteudo didatico novo em briefing final, arquitetura, roteiro, fo
 
 Quando a nova resposta for uma correcao de uma versao anterior, revise tambem regressao de conteudo: a nova versao nao pode ficar mais pobre, rasa ou menos util apenas porque corrigiu o problema apontado.
 
+Para slides e ebook, a validacao padrao deve ser enxuta e produtiva. Faca no maximo uma revisao antes da geracao e uma revisao depois do output. Rodadas extras so quando houver desalinhamento grave ou pedido explicito do usuario.
+
+Nao crie arquivo de revisao para todo ajuste pequeno. Use `07-revisoes/` apenas para revisao formal de output/produto importante. Para ajustes pontuais, atualize o prompt ativo, a diretriz canonica ou `00-estado-atual.md`.
+
 ## Checklist geral
 
 - O objetivo da aula esta claro?
@@ -44,6 +48,24 @@ Quando a nova resposta for uma correcao de uma versao anterior, revise tambem re
 - O formato combina com a ferramenta usada?
 - Ha excesso de texto, superficialidade ou perda de nuance?
 - O produto pode ser usado imediatamente ou precisa de nova rodada?
+
+## Checklist rapido para slides
+
+- A sequencia dos slides segue o roteiro mestre?
+- Cada slide tem uma mensagem central clara?
+- O texto visivel esta curto o suficiente?
+- Detalhes longos foram para notas do apresentador ou ebook?
+- Ha sugestao visual objetiva?
+- Falta apenas ajuste pontual ou precisa regerar parte?
+
+## Checklist rapido para ebook
+
+- O ebook complementa os slides em vez de copia-los?
+- A leitura esta mobile-first?
+- Ha capitulos/secoes curtas?
+- Exemplos, boxes e checklists ajudam a aplicacao?
+- O tom esta adequado ao publico?
+- Falta apenas ajuste pontual ou precisa regerar parte?
 
 ## Matriz de diagnostico
 
@@ -222,6 +244,29 @@ Decisao:
 
 Arquivo a atualizar:
 [caminho no projeto persistente]
+```
+
+## Formato curto para slides/ebook
+
+Use este formato quando o usuario quiser velocidade:
+
+```text
+Diagnostico:
+[1-3 frases]
+
+Top 5 ajustes:
+1. ...
+2. ...
+3. ...
+
+Decisao:
+[Aprovar / Ajustar pontualmente / Regerar parte / Regerar tudo]
+
+Prompt de correcao:
+[prompt pronto]
+
+Atualizar:
+[arquivo canonico ou nenhum]
 ```
 
 ## Checkpoint antes de consolidar
